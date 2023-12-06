@@ -1,0 +1,129 @@
+<div class="tracfic_cardrule_block tracfic_cardrule_block">
+  <nb-card class="custome-card">
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="tilte"> Frequency Capping </h2>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="rule-item_block">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Allow up to </label>
+              </div>
+              <div class="col-sm-5 padder">
+                <input name="minClick" [(ngModel)]="minClick" (change)="change($event)" class="form-control" type="text"
+                  placeholder="0" [value]="minClick">
+              </div>
+              <div class="col-sm-6">
+                <label class="label_text"> Clicks </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Ad Clicks Every </label>
+              </div>
+              <div class="col-sm-6 padder">
+                <input [(ngModel)]="minutes" (change)="change($event)" name="minutes" class="form-control" type="text"
+                  placeholder="..Min" [value]="minutes">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="rule-item_block">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Allow up to </label>
+              </div>
+              <div class="col-sm-5 padder">
+                <input [(ngModel)]="hourclick" [(ngModel)]="hourclick" (change)="change($event)" name="hourclick"
+                  class="form-control" type="text" placeholder="0">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Ad Clicks Every </label>
+              </div>
+              <div class="col-sm-6 padder">
+                <input [(ngModel)]="hours" [(ngModel)]="hours" (change)="change($event)" name="hours"
+                  class="form-control" type="text" nbInput placeholder="..Hour">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-item_block">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Allow up to </label>
+              </div>
+              <div class="col-sm-5 padder">
+                <input [(ngModel)]="dayclick" [(ngModel)]="dayclick" (keydown)="change($event)" name="dayclick"
+                  class="form-control" type="text" nbInput placeholder="0">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6 ">
+                <label class="label_text"> Ad Clicks Every </label>
+              </div>
+              <div class="col-sm-6 padder">
+                <input [(ngModel)]="day" name="day" [(ngModel)]="day" (change)="change($event)" class="form-control"
+                  type="text" nbInput placeholder="..Days ">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="rule-item_block">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Allow up to </label>
+              </div>
+              <div class="col-sm-5 padder">
+                <input [(ngModel)]="monthclick" [(ngModel)]="monthclick" (change)="change($event)" name="monthclick"
+                  class="form-control" type="text" placeholder="0">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label_text"> Ad Clicks Every </label>
+              </div>
+              <div class="col-sm-6 padder">
+                <input [(ngModel)]="months" [(ngModel)]="months" (change)="change($event)" name="months"
+                  class="form-control" type="text" placeholder="..Months">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6 padder mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </nb-card-body>
+  </nb-card>
+</div>

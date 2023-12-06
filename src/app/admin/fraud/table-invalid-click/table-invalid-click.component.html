@@ -1,0 +1,77 @@
+<div class="fruadinvalid_block">
+  <nb-card class="custome-card">
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="tilte"> Invalid click type </h2>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-list class="list_block">
+        <nb-list-item *ngFor="let click of clicks">
+          <div class="source_item">
+            <h2> IP </h2>
+            <p>
+              <img src="./../../../assets/img/feather-trending-up.svg">
+              {{ip }}
+            </p>
+          </div>
+        </nb-list-item>
+
+        <nb-list-item *ngFor="let click of clicks">
+          <div class="source_item">
+            <h2> Bot </h2>
+            <p class="text1">
+              <img src="./../../../assets/img/feather-trending-up.svg">
+              {{bot}}
+            </p>
+          </div>
+        </nb-list-item>
+
+        <!-- <nb-list-item *ngFor="let click of clicks">
+          <div class="source_item">
+            <h2> Accidental </h2>
+            <p class="text2">
+              <img src="./../../../assets/img/feather-trending-up1.svg">
+              {{ click.accidental }}
+            </p>
+          </div>
+        </nb-list-item> -->
+
+        <!-- <nb-list-item *ngFor="let click of clicks">
+
+          <div class="source_item">
+            <h2> Competitor </h2>
+            <p class="text1">
+              <img src="./../../../assets/img/feather-trending-up.svg">
+              {{ click.competitor }}
+            </p>
+          </div>
+        </nb-list-item> -->
+
+        <nb-list-item *ngFor="let click of clicks">
+
+          <div class="source_item">
+            <h2> Farm </h2>
+            <p class="text1">
+              <img src="./../../../assets/img/feather-trending-up.svg">
+              {{ farm }}
+            </p>
+          </div>
+        </nb-list-item>
+
+        <nb-list-item *ngFor="let click of clicks">
+
+          <div class="source_item">
+            <h2> JS Disabled </h2>
+            <p>
+              <img src="./../../../assets/img/feather-trending-up.svg">
+              {{ js }}
+            </p>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>
+</div>

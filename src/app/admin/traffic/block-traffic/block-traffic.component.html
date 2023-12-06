@@ -1,0 +1,513 @@
+<!-- <nb-select placeholder="Campaign"
+filled
+status="primary"
+[(ngModel)]="selected">
+<nb-option  *ngFor="let option of options"
+[value]="option">
+{{option}}
+</nb-option>
+</nb-select> -->
+
+<app-loader *ngIf="!loader"></app-loader>
+
+<div class="trafficecontrol_block" *ngIf="loader && !account">
+  <div class="traffic_message alert alert-danger">
+    <p>
+      Please connect your account to control traffic
+      <a href="/#/user/adwords">Connect Adwords</a>
+    </p>
+  </div>
+</div>
+
+<div class="trafficecontrol_block" *ngIf="loader && account">
+  <div class="inner_block">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="trafficecontrol_row">
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">IP</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox ip-box">
+                          <img src="./../../../../assets/img/ip.svg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text"> Enter IP address to block here </label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesIp"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">OS</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox os-box">
+                          <img
+                            src="./../../../../assets/img/windows.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text"> Enter OS To Block Here </label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesOs"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">Channel</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox chanle-box">
+                          <img
+                            src="./../../../../assets/img/connection.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text"> Enter Channel To Block Here </label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesChannel"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">Browser</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox browser-box">
+                          <img
+                            src="./../../../../assets/img/internet.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text"> Enter Browser To Block Here </label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesBrowser"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">Device type</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox device-box">
+                          <img
+                            src="./../../../../assets/img/smartphone.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text">
+                        Enter Device type To Block Here
+                      </label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesDevice"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+              <div class="traficard_block">
+                <nb-card class="custome-card">
+                  <nb-card-header>
+                    <div class="row align-item-center">
+                      <div class="col-sm-7">
+                        <h2 class="tilte">ISP</h2>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="imgbox isp-box">
+                          <img
+                            src="./../../../../assets/img/Cloud_1_.svg"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="form-group">
+                      <label class="lable_text"> Enter ISP To Block Here</label>
+                      <div class="inner-group">
+                        <ngx-mat-tag-input
+                          #aa
+                          (change)="change($event)"
+                          [selectedTags]="selectedValuesIsp"
+                          placeholder=""
+                          class="form-control"
+                        >
+                        </ngx-mat-tag-input>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <app-map
+                [countries]="country"
+                [cities]="city"
+                [cityList]="city"
+                (btnClick)="getCityCountry($event)"
+              ></app-map>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-3 mpadder">
+        <div class="traficard_block">
+          <div class="billinginfo_block traficcheck_block">
+            <nb-card class="custome-card">
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="planlist-block planlist-block1">
+                      <div class="plan_item">
+                        <div class="row align-item-center">
+                          <div class="col-sm-7">
+                            <label class="text"> Proxy </label>
+                          </div>
+                          <div class="col-sm-5">
+                            <nb-toggle
+                              (change)="change($event)"
+                              [(ngModel)]="toggleProxy"
+                              labelPosition="left"
+                              class="custome_toggle"
+                            >
+                            </nb-toggle>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="plan_item">
+                        <div class="row align-item-center">
+                          <div class="col-sm-7">
+                            <label class="text"> JS Disabled </label>
+                          </div>
+                          <div class="col-sm-5">
+                            <nb-toggle
+                              [(ngModel)]="toggleJS"
+                              (change)="change($event)"
+                              labelPosition="left"
+                              class="custome_toggle"
+                            >
+                            </nb-toggle>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="plan_item">
+                        <div class="row align-item-center">
+                          <div class="col-sm-7">
+                            <label class="text"> VPN </label>
+                          </div>
+                          <div class="col-sm-5">
+                            <nb-toggle
+                              [(ngModel)]="togglePost"
+                              labelPosition="left"
+                              (change)="change($event)"
+                              class="custome_toggle"
+                            >
+                            </nb-toggle>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+
+        <div class="tracfic_cardrule_block tracfic_cardrule_block">
+          <nb-card class="custome-card">
+            <nb-card-header>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5 class="title">Frequency Capping</h5>
+                </div>
+              </div>
+            </nb-card-header>
+            <nb-card-body>
+              <form (ngSubmit)="submit()">
+                <div class="rule-item_block">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Allow up to </label>
+                      </div>
+                      <div class="col-sm-5 padder">
+                        <input
+                          name="minClick"
+                          [(ngModel)]="minClick"
+                          (change)="change($event)"
+                          class="form-control"
+                          type="text"
+                          placeholder="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Ad Clicks Every </label>
+                      </div>
+                      <div class="col-sm-6 padder">
+                        <input
+                          [(ngModel)]="minutes"
+                          (change)="change($event)"
+                          name="minutes"
+                          class="form-control"
+                          type="text"
+                          placeholder="..Min"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rule-item_block">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Allow up to </label>
+                      </div>
+                      <div class="col-sm-5 padder">
+                        <input
+                          [(ngModel)]="hourclick"
+                          [(ngModel)]="hourclick"
+                          (change)="change($event)"
+                          name="hourclick"
+                          class="form-control"
+                          type="text"
+                          placeholder="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Ad Clicks Every </label>
+                      </div>
+                      <div class="col-sm-6 padder">
+                        <input
+                          [(ngModel)]="hours"
+                          [(ngModel)]="hours"
+                          (change)="change($event)"
+                          name="hours"
+                          class="form-control"
+                          type="text"
+                          nbInput
+                          placeholder="..Hour"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rule-item_block">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Allow up to </label>
+                      </div>
+                      <div class="col-sm-5 padder">
+                        <input
+                          [(ngModel)]="dayclick"
+                          [(ngModel)]="dayclick"
+                          (keydown)="change($event)"
+                          name="dayclick"
+                          class="form-control"
+                          type="text"
+                          nbInput
+                          placeholder="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Ad Clicks Every </label>
+                      </div>
+                      <div class="col-sm-6 padder">
+                        <input
+                          [(ngModel)]="day"
+                          name="day"
+                          [(ngModel)]="day"
+                          (change)="change($event)"
+                          class="form-control"
+                          type="text"
+                          nbInput
+                          placeholder="..Days "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rule-item_block">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Allow up to </label>
+                      </div>
+                      <div class="col-sm-5 padder">
+                        <input
+                          [(ngModel)]="monthclick"
+                          [(ngModel)]="monthclick"
+                          (change)="change($event)"
+                          name="monthclick"
+                          class="form-control"
+                          type="text"
+                          placeholder="0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="label_text"> Ad Clicks Every </label>
+                      </div>
+                      <div class="col-sm-6 padder">
+                        <input
+                          [(ngModel)]="months"
+                          [(ngModel)]="months"
+                          (change)="change($event)"
+                          name="months"
+                          class="form-control"
+                          type="text"
+                          placeholder="..Months"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 padder mt-3">
+                        <button type="submit" class="btn btn-primary">
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

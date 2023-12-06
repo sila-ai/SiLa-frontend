@@ -1,0 +1,93 @@
+<div class="reportrow2_block">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+      <div class="totalclick_block">
+        <nb-card class="custome-card">
+          <nb-card-body>
+            <div class="info_block">
+              <div class="icon_block">
+                <img src="./../../../../assets/img/tapclick.svg" alt="" />
+              </div>
+              <h2> Total Clicks </h2>
+              <p> {{totalClick}} </p>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+      <div class="rsdevice_block">
+        <nb-card class="custome-card">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="tilte">
+                  Fraud by device
+                </h2>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="chart_block" style="height:175px;">
+                  <!-- <canvas baseChart width="500" height="200" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [options]="doughnutChartOptions" [colors]="doughnutChartColors"> </canvas> -->
+                  <ngx-charts-pie-chart [scheme]="{domain: ['#FDC538', '#43D88B', '#8482FC', '#E570BA', '#F89767']}"
+                    [results]="series1" [legend]="true" [labels]="false" [doughnut]="true" [legendPosition]="'right'"
+                    [legendTitle]="''" [labelFormatting]="pieChartLabel.bind(this, series1)" [animations]="false"
+                    class="chartcontainer dashboard-dountchart">
+                  </ngx-charts-pie-chart>
+
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4 custome-col">
+      <div class="rsdevice_block">
+        <nb-card class="custome-card">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="tilte">
+                  Fraud by browser
+                </h2>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="chart_block" style="height: 175px;">
+                  <!-- <canvas baseChart width="500" height="200" [data]="doughnutChartDataBrowser" [labels]="doughnutChartLabelsBrowser" [chartType]="doughnutChartTypeBrowser" [options]="doughnutChartOptionsBrowser" [colors]="doughnutChartColorsBrowser"> </canvas> -->
+                  <ngx-charts-pie-chart [scheme]="{domain: ['#FDC538', '#43D88B', '#8482FC', '#E570BA', '#F89767']}"
+                    [results]="series2" [legend]="true" [labels]="false" [doughnut]="true" [legendPosition]="'right'"
+                    [legendTitle]="''" [labelFormatting]="pieChartLabel.bind(this, series1)" [animations]="false"
+                    class="chartcontainer dashboard-dountchart">
+                  </ngx-charts-pie-chart>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="reportrow3_block">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6">
+      <app-table-list [country]="country"></app-table-list>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+      <app-table-invalid-click [ip]="ip" [bot]="bot" [js]="js" [farm]="farm"></app-table-invalid-click>
+    </div>
+  </div>
+</div>

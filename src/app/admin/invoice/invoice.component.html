@@ -1,0 +1,245 @@
+<div class="page_block">
+   <div class="page-title">
+       <div class="row">
+           <div class="col-sm-12 col-md-12 col-lg-12">
+               <h2 class="title_block"> Invoice</h2>
+           </div>
+       </div>
+   </div>
+   <div class="billinginfo_block">
+       <div class="row">
+           <div class="col-sm-12 col-md-12 col-lg-12">
+
+
+                <div class="invoice-box">
+                    <table cellpadding="10" cellspacing="0" class="inocie-main" style="
+                       width: 100%;
+                       margin: 20px auto;
+                       max-width: 800px;
+                       background: white;
+                       border: 1px solid rgb(0 0 0 / 10%);
+                       ">
+                       <tbody>
+                          <tr valign="top" class="top">
+                             <td colspan="2">
+                                <table cellpadding="15" cellspacing="0" style="
+                                   width: 100%;
+                                   text-align: center;
+                                   ">
+                                   <tbody>
+                                      <tr>
+                                         <td valign="middle" style="width: 100%">
+                                            <img src="/assets/img/sila_logo.png" style="width: 100%;max-width: 200px;">
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </td>
+                          </tr>
+                          <tr class="information">
+                             <td colspan="2">
+                                <table cellpadding="10" cellspacing="0" style="
+                                   width: 100%;
+                                   margin: 0 0 30px;
+                                   ">
+                                   <tbody>
+                                      <tr>
+                                         <td style="
+                                            width: 50%;
+                                            ">
+                                            <h2 style="
+                                               margin: 0 0 15px;
+                                               text-transform: uppercase;
+                                               font-weight: 800;
+                                               font-size: 24px;
+                                               line-height: normal;
+                                               ">  Invoice </h2>
+                                            <p style="
+                                               font-size: 16px;
+                                               margin: 0;
+                                               line-height: 24px;
+                                               "> <b style="
+                                               text-transform: capitalize;
+                                               ">Invoice : </b> {{invoice.id}} </p>
+                                            <p style="
+                                               font-size: 16px;
+                                               margin: 0;
+                                               line-height: 24px;
+                                               "> <b style="
+                                               text-transform: capitalize;
+                                               ">Invoice date : </b>  {{invoice.period_start * 1000 | date:'dd/MM/yyyy'}}</p>
+                                            <p style="
+                                               font-size: 16px;
+                                               margin: 0;
+                                               line-height: 24px;
+                                               "> <b style="
+                                               text-transform: capitalize;
+                                               "> Invoice amount: </b> {{invoice.total}} </p>
+                                         </td>
+                                         <td style="
+                                            width: 50%;
+                                            text-align: right;
+                                            ">
+                                            <h4 style="
+                                               margin: 0 0 10px;
+                                               text-transform: uppercase;
+                                               font-weight: 600;
+                                               font-size: 16px;
+                                               line-height: normal;
+                                               "> SUBSCRIPTION </h4>
+                                            <p style="
+                                               font-size: 16px;
+                                               margin: 0;
+                                               line-height: 24px;
+                                               "> <b> ID : </b>{{invoice.subscription}}</p>
+                                            <p style="
+                                               font-size: 16px;
+                                               margin: 0;
+                                               line-height: 24px;
+                                               "> <b> Next Bill date : </b> {{invoice.period_end * 1000 | date:'dd/MM/yyyy'}}</p>
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </td>
+                          </tr>
+                          <tr class="information">
+                             <td colspan="2">
+                                <table cellpadding="12" cellspacing="4" style="
+                                   border: 0px solid #DFDFDF;
+                                   width: 100%;
+                                   ">
+                                   <thead style="
+                                      background: #F1F3F4;
+                                      ">
+                                      <tr>
+                                         <th style="
+                                         text-align: left;
+                                         font-size: 16px;
+                                         text-transform: uppercase;
+                                         font-weight: 800;font-family: 'Nunito-SemiBold';
+                                            width: 50%;
+                                            "> Description </th>
+                                         <th style="
+                                         text-align: left;
+                                         font-size: 16px;
+                                         text-transform: uppercase;
+                                         font-weight: 800;font-family: 'Nunito-SemiBold';
+                                            "> Unit </th>
+                                         <th style="
+                                         text-align: left;
+                                         font-size: 16px;
+                                         text-transform: uppercase;
+                                         font-weight: 800;font-family: 'Nunito-SemiBold';
+                                            "> Unit Price </th>
+                                         <th style="
+                                         text-align: left;
+                                         font-size: 16px;
+                                         text-transform: uppercase;
+                                         font-weight: 800;font-family: 'Nunito-SemiBold';
+                                            "> Vat </th>
+                                         <th style="
+                                            text-align: left;
+                                            font-size: 16px;
+                                            text-transform: uppercase;
+                                            font-weight: 800;font-family: 'Nunito-SemiBold';
+                                            "> Amount </th>
+                                      </tr>
+                                   </thead>
+                                   <tbody>
+                                      <tr style="
+                                         ">
+                                         <td style="
+                                            ">
+                                            <p>
+           
+                                         <b> {{planDetail.nickname}} </b>
+                                            </p>
+                                         </td>
+                                          <td style="
+                                            ">
+                                            <p>
+                                               -
+                                            </p>
+                                         </td>
+                                         <td style="
+                                            ">
+                                            <p>
+                                               -
+                                            </p>
+                                         </td>
+                                           <td style="">
+                                            
+                                            <p>
+                                              -
+                                            </p>
+                                         </td>
+                                         <td style="
+                                            ">
+                                            <p>
+                                               {{invoice.total}}
+                                            </p>
+                                         </td> 
+                                      </tr>
+                                     
+                                     
+                                      <tr class="" style="
+                                         border-top: 1px solid #F1F3F4;
+                                         ">
+                                         <td colspan="4" style="
+                                            text-align: right;
+                                            ">
+                                            <p> <b> Sub Total </b>  </p>
+                                         </td>
+                                         <td>
+                                            <p> {{invoice.subtotal}} </p>
+                                         </td>
+                                      </tr>
+                                      <tr class="">
+                                         <td colspan="4" style="
+                                            text-align: right;
+                                            ">
+                                            <p> <b> Total </b>  </p>
+                                         </td>
+                                         <td>
+                                            <p> {{invoice.total}} </p>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td colspan="4" style="
+                                            text-align: right;
+                                            ">
+                                            <p> Payment  </p>
+                                         </td>
+                                         <td>
+                                            <p>{{invoice.total}}</p>
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                         <td colspan="4" style="
+                                            text-align: right;
+                                            ">
+                                            <p style="
+                                               font-size: 14px;
+                                               text-transform: capitalize;
+                                               "> <b>
+                                               Amount Due </b>  
+                                            </p>
+                                         </td>
+                                         <td>
+                                            <p> {{invoice.amount_remaining}} </p>
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
+
+
+           </div>  
+       </div>
+   </div>
+</div>

@@ -1,0 +1,532 @@
+<div class="page_block">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h2 class="title_block">Billing</h2>
+      </div>
+    </div>
+  </div>
+  <div class="billinginfo_block">
+    <div class="row billing-row">
+      <div class="col-sm-12 col-md-12 col-lg-7 billing-row-col">
+        <nb-card class="custome-card billing-custome-card">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-sm-12 col-md-7 col-lg-7">
+                <h2 class="tilte" *ngIf="!subCancel">Current Subscription</h2>
+                <h2 class="tilte" *ngIf="subCancel">
+                  Your Subscription is Cancelled
+                </h2>
+                <p class="tilte text-danger" *ngIf="activeSubscription">
+                  Remaining Days {{ remainingDays }}
+                </p>
+              </div>
+
+              <div class="col-sm-12 col-md-5 col-lg-5">
+                <ng-template #dialog let-data let-ref="dialogRef">
+                  <div class="upgradeplan_modelmain">
+                    <nb-card class="upgradeplan-model">
+                      <nb-card-header>
+                        Upgrade Subscription
+                        <button
+                          nbButton
+                          (click)="ref.close()"
+                          class="btn-close"
+                        >
+                          <img
+                            class="logo"
+                            title="Back to home"
+                            src="/assets/img/cross-icon.png"
+                            alt="Cancel icon"
+                          />
+                        </button>
+                      </nb-card-header>
+                      <nb-card-body>
+                        <!-- upgared design here -->
+                        <div class="upgradeplan-block">
+                          <div class="pricing-content">
+                            <div class="row">
+                              <div
+                                class="col-lg-12 col-md-12"
+                                style="margin-bottom: 10px"
+                                *ngFor="let item of plans; index as i"
+                              >
+                              <stripe-pricing-table 
+                                [attr.pricing-table-id]="stripe_table"
+                                [attr.publishable-key]="stripe_key"
+                                [attr.client-reference-id]="id"
+                                [attr.customer-email]="email"
+                                >
+                              </stripe-pricing-table>
+                            </div>
+                              
+                            <!--  <div
+                                class="col-lg-3 col-md-6"
+                                style="margin-bottom: 10px"
+                                *ngFor="let item of plans; index as i"
+                              >
+                                <div class="pricing-item">
+                                  <h3>{{ item.product_name }}</h3>
+                                  <h2>
+                                    {{ item.currency | uppercase }}
+                                    {{ item.amount / 100 }} for
+                                    {{ item.nickname }} click
+                                  </h2>
+                                  <span>Per Month</span>
+                                  <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                  </p>
+                                  <hr />
+                                  <div class="pricing-list">
+                                    <ul>
+                                      <li>Lorem ipsum dolor sit amet</li>
+                                      <li>
+                                        Donec bibendum turpis eu est malesuada.
+                                      </li>
+                                      <li>Vestibulum fermentum velit.</li>
+                                      <li>
+                                        Donec mollis lectus eget volutpat
+                                        rutrum.
+                                      </li>
+                                      <li>
+                                        Sed aliquam sem id ipsum imperdiet
+                                        dapibus.
+                                      </li>
+                                    </ul>
+                                    <a href="#" class="see-feature"
+                                      >See all features
+                                      <span
+                                        ><img
+                                          src="/assets/img/y-path.png"
+                                          alt="Image not found"
+                                      /></span>
+                                    </a>
+                                  </div>
+                                  <hr />
+                                  <div class="get-btn">
+                                    <button
+                                      nbButton
+                                      status="primary"
+                                      class="btn btn_submit btn_submit1"
+                                      [disabled]="item.upgradePlan"
+                                      (click)="getFreeTrail(item)"
+                                    >
+                                      GET FREE TRIAL
+                                      <span
+                                        ><img
+                                          src="/assets/img/w-path.png"
+                                          alt=""
+                                      /></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>-->
+                            </div>
+                          </div>
+                        </div>
+                      </nb-card-body>
+                    </nb-card>
+                  </div>
+                </ng-template>
+                <div class="flex_btnblock">
+                  <button
+                    nbButton
+                    status="primary"
+                    (click)="open(dialog)"
+                    class="btn btn_submit"
+                  >
+                    Upgrade Plan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <div *ngIf="!activeSubscription">
+              <p class="title" style="text-align: 'center'">
+                No Subscription Activated
+              </p>
+            </div>
+            <div class="row justify-content-center">
+              <div
+                class="col-sm-12 col-md-7 col-lg-7"
+                *ngIf="activeSubscription"
+              >
+                <div class="planlist-block">
+                  <div class="plan_item">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <label class="text"> Subscription Model </label>
+                      </div>
+                      <div class="col-sm-5">
+                        <label class="text1">
+                          <b>
+                            {{ productName }}
+                          </b>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="plan_item">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <label class="text"> Start Date </label>
+                      </div>
+                      <div class="col-sm-5">
+                        <label class="text1">
+                          <b>
+                            {{ subscriberStartDate }}
+                          </b>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="plan_item">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <label class="text"> End Date </label>
+                      </div>
+                      <div class="col-sm-5">
+                        <label class="text1">
+                          <b>
+                            {{ subscriberEndDate }}
+                          </b>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="plan_item">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <label class="text"> Total Click </label>
+                      </div>
+                      <div class="col-sm-5">
+                        <label class="text1">
+                          <b> {{ totalClick + subscriberName }} Clicks </b>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="plan_cancelitem">
+                    <div class="row" *ngIf="activeSubscription && !subCancel">
+                      <div class="col-sm-12">
+                        <label>
+                          <button
+                            nbButton
+                            (click)="cancelSubscription()"
+                            class="text-danger cancel_subscr"
+                          >
+                            Cancel Subscription
+                          </button>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-5 col-lg-5">
+                <div class="imgbox_block">
+                  <a routerLink="/#" class="">
+                    <img src="./../../../assets/img/subscription.svg" alt="" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-5 billing-row-col">
+        <div class="billinginfoaction_block">
+          <div class="btn_action">
+            <button
+              nbButton
+              status="primary"
+              (click)="updatePaymentinfo()"
+              class="btn btn_submit btn_submit1"
+            >
+              Update Payment Information
+            </button>
+          </div>
+          <nb-card class="custome-card" *ngIf="activeSubscription">
+            <nb-card-header>
+              <h2 class="tilte">Buy-ad-on</h2>
+            </nb-card-header>
+            <nb-card-body>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="planlist-block planlist-block1">
+                    <ng-container *ngFor="let addons of addon">
+                      <ng-template [ngIf]="addons.type === 'one_time'">
+                        <div class="plan_item">
+                          <div class="row">
+                            <div class="col-sm-7">
+                              <label class="text">
+                                {{ addons.amount / 100 }}
+                                {{ addons.currency | uppercase }} /
+                                {{ addons.click }} clicks
+                              </label>
+                            </div>
+                            <div class="col-sm-5">
+                              <label class="text1">
+                                <a (click)="buyNow(addons.id)" class="links">
+                                  Buy now
+                                </a>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+    <div class="custome_table table-margin" *ngIf="subscriptionData?.length">
+      <div class="row">
+        <div class="col-sm-12">
+          <nb-card class="custome-card">
+            <nb-card-header>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h2 class="tilte">Subscription</h2>
+                </div>
+              </div>
+            </nb-card-header>
+            <nb-card-body>
+              <div class="table-responsive">
+                <input
+                  nbInput
+                  [nbFilterInput]="subscriptionSource"
+                  placeholder="Search Subscription"
+                  id="search"
+                  class="search-input"
+                />
+                <table
+                  [nbTreeGrid]="subscriptionSource"
+                  [nbSort]="subscriptionSource"
+                  (sort)="updateSort($event)"
+                  class="tabel custome_table"
+                  equalColumnsWidth
+                >
+                  <tr
+                    nbTreeGridHeaderRow
+                    *nbTreeGridHeaderRowDef="subAllColumns"
+                  ></tr>
+                  <tr
+                    nbTreeGridRow
+                    *nbTreeGridRowDef="let row; columns: subAllColumns"
+                  ></tr>
+
+                  <ng-container
+                    *ngFor="let column of subDefaultColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th
+                      nbTreeGridHeaderCell
+                      [nbSortHeader]="getSortDirection(column)"
+                      *nbTreeGridHeaderCellDef
+                    >
+                      {{ column }}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                      {{ row.data[column] || "-" }}
+                    </td>
+                  </ng-container>
+                  <ng-container
+                    *ngFor="let column of subCustomColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                      {{ column }}
+                    </th>
+                    <td
+                      nbTreeGridCell
+                      *nbTreeGridCellDef="let subscriptionData"
+                    >
+                      <button
+                        nbButton
+                        status="primary"
+                        *ngIf="subscriptionData.data.cancel_at_period_end"
+                        (click)="
+                          reActivateSubscription(subscriptionData.data.sub_id)
+                        "
+                      >
+                        Reactivate
+                      </button>
+                    </td>
+                  </ng-container>
+                </table>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="custome_table table-margin" *ngIf="invoiceData?.length">
+      <div class="row">
+        <div class="col-sm-12">
+          <nb-card class="custome-card">
+            <nb-card-header>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h2 class="tilte">Invoice</h2>
+                </div>
+              </div>
+            </nb-card-header>
+            <nb-card-body>
+              <div class="table-responsive">
+                <input
+                  nbInput
+                  [nbFilterInput]="dataSource"
+                  placeholder="Search Invoice"
+                  id="search"
+                  class="search-input"
+                />
+                <table
+                  [nbTreeGrid]="dataSource"
+                  [nbSort]="dataSource"
+                  (sort)="updateSort($event)"
+                  class="tabel custome_table"
+                  equalColumnsWidth
+                >
+                  <tr
+                    nbTreeGridHeaderRow
+                    *nbTreeGridHeaderRowDef="allColumns"
+                  ></tr>
+                  <tr
+                    nbTreeGridRow
+                    *nbTreeGridRowDef="let row; columns: allColumns"
+                  ></tr>
+
+                  <ng-container
+                    *ngFor="let column of defaultColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th
+                      nbTreeGridHeaderCell
+                      [nbSortHeader]="getSortDirection(column)"
+                      *nbTreeGridHeaderCellDef
+                    >
+                      {{ column }}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                      {{ row.data[column] || "-" }}
+                    </td>
+                  </ng-container>
+                  <ng-container
+                    *ngFor="let column of customColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                      {{ column }}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                      <button
+                        nbButton
+                        status="primary"
+                        (click)="viewInvoice(row.data)"
+                      >
+                        view Invoice
+                      </button>
+                    </td>
+                  </ng-container>
+                </table>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+    <div class="custome_table table-margin" *ngIf="data?.length">
+      <div class="row">
+        <div class="col-sm-12">
+          <nb-card class="custome-card">
+            <nb-card-header>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h2 class="tilte">Add On</h2>
+                </div>
+              </div>
+            </nb-card-header>
+            <nb-card-body>
+              <div class="table-responsive">
+                <input
+                  nbInput
+                  [nbFilterInput]="AddonlistSource"
+                  placeholder="Search Add on"
+                  id="search"
+                  class="search-input"
+                />
+                <table
+                  [nbTreeGrid]="AddonlistSource"
+                  [nbSort]="AddonlistSource"
+                  (sort)="updateSort($event)"
+                  class="tabel custome_table"
+                  equalColumnsWidth
+                >
+                  <tr
+                    nbTreeGridHeaderRow
+                    *nbTreeGridHeaderRowDef="AddonAllColumns"
+                  ></tr>
+                  <tr
+                    nbTreeGridRow
+                    *nbTreeGridRowDef="let row; columns: AddonAllColumns"
+                  ></tr>
+
+                  <ng-container
+                    *ngFor="
+                      let column of AddonDefaultColumns;
+                      let index = index
+                    "
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th
+                      nbTreeGridHeaderCell
+                      [nbSortHeader]="getSortDirection(column)"
+                      *nbTreeGridHeaderCellDef
+                    >
+                      {{ column }}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                      {{ row.data[column] || "-" }}
+                    </td>
+                  </ng-container>
+                  <ng-container
+                    *ngFor="let column of AddonCustomColumns; let index = index"
+                    [nbTreeGridColumnDef]="column"
+                    [showOn]="getShowOn(index)"
+                  >
+                    <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                      {{ column }}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                      <button
+                        nbButton
+                        status="primary"
+                        (click)="viewAddon(row.data)"
+                      >
+                        view Addon
+                      </button>
+                    </td>
+                  </ng-container>
+                </table>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

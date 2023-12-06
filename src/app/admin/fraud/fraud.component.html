@@ -1,0 +1,20 @@
+<div class="page_block">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <h2 class="title_block">Fraud Report</h2>
+      </div>
+    </div>
+  </div>
+  <div class="fruadreport_main" *ngIf="load">
+    <app-chart-horizontal [savings]="savings" [invalidClick]="invalidClick" [validClick]="validClick" [totalInvalid]="totalInvalid" [totalvalid]="totalvalid">
+    </app-chart-horizontal>
+    <app-chart-vertically [series1]="series1" [series2]="series2" [totalClick]="totalClick" [ip]="ip" [bot]="bot"
+      [js]="js" [farm]="farm" [country]="country"></app-chart-vertically>
+    <!-- <app-table-info></app-table-info> -->
+    <!-- <app-table [userLog]="userLog"></app-table> -->
+  </div>
+  <div class="fruadreport_main" *ngIf="!load">
+    <app-loader></app-loader>
+  </div>
+</div>

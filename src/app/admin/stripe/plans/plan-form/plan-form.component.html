@@ -1,0 +1,191 @@
+<div class="page_block">
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h2 class="title_block">
+            {{ isNewPlan ? "Create" : "Update" }} Plan
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <nb-card class="custome-card">
+      <nb-card-body>
+        <div class="custome-form-blocks">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text"> Product</label>
+                <select
+                  [attr.disabled]="form.value.id !== null ? 'disabled' : null"
+                  class="form-control"
+                  formControlName="product"
+                  [class.is-invalid]="f.product.errors"
+                >
+                  <option value>Select Product</option>
+                  <option *ngFor="let product of products" [value]="product.id">
+                    {{ product.name }}
+                  </option>
+                </select>
+                <div *ngIf="f.product.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.product.errors.server"
+                    [innerHtml]="f.product.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text enterclick">Enter clicks</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="nickname"
+                  (keypress)="keyPressNumbers($event)"
+                  placeholder="Enter Clicks"
+                  [class.is-invalid]="f.nickname.errors"
+                />
+                <div *ngIf="f.nickname.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.nickname.errors.server"
+                    [innerHtml]="f.nickname.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text">Amount</label>
+                <input
+                  type="text"
+                  [attr.disabled]="form.value.id !== null ? 'disabled' : null"
+                  class="form-control"
+                  formControlName="amount"
+                  placeholder="Enter plan amount"
+                  [class.is-invalid]="f.amount.errors"
+                />
+                <div *ngIf="f.amount.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.amount.errors.server"
+                    [innerHtml]="f.amount.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text">Currency</label>
+                <select
+                  class="form-control"
+                  [attr.disabled]="form.value.id !== null ? 'disabled' : null"
+                  formControlName="currency"
+                  [class.is-invalid]="f.currency.errors"
+                >
+                  <option value>Select Currency</option>
+                  <option value="usd">USD</option>
+                  <option value="inr">INR</option>
+                </select>
+                <div *ngIf="f.currency.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.currency.errors.server"
+                    [innerHtml]="f.currency.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text">Interval</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [attr.disabled]="form.value.id !== null"
+                  readonly
+                  formControlName="interval"
+                  placeholder="Enter plan interval"
+                  [class.is-invalid]="f.interval.errors"
+                />
+                <div *ngIf="f.interval.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.interval.errors.server"
+                    [innerHtml]="f.interval.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text">Interval Count</label>
+                <select
+                  class="form-control"
+                  [attr.disabled]="form.value.id !== null ? 'disabled' : null"
+                  formControlName="interval_count"
+                  [class.is-invalid]="f.interval_count.errors"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+                <div *ngIf="f.interval_count.invalid" class="invalid-feedback">
+                  <div
+                    *ngIf="f.interval_count.errors.server"
+                    [innerHtml]="f.interval_count.getError('server')"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+
+      <nb-card-footer>
+        <div class="flex align-item-end justify-content-end float-right">
+          <button
+            type="button"
+            class="btn-cancel mr-2"
+            (click)="onCancel()"
+            nbButton
+            status="basic"
+          >
+            CANCEL
+          </button>
+          <button
+            type="button"
+            (click)="!isNewPlan ? onUpdate() : onSubmit()"
+            nbButton
+            status="primary"
+            class="btn_submit"
+          >
+            {{ isNewPlan ? "Create" : "Update" }}
+          </button>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</div>

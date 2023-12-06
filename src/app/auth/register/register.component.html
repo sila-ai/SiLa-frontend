@@ -1,0 +1,152 @@
+<nb-layout class="loginlayout_padding p-0">
+  <nb-layout-column class="loginlayout_padding">
+    <div class="row m-0 align-items-center" style="height: 100vh;">
+    <ng-container *ngIf="step == 1">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 offset-sm-4">
+        <nb-card class="login-card">
+          <nb-card-header>
+            <img
+            class="logo"
+            width="100vw"
+            src="/assets/img/sila_logo.png"
+            alt="Logo"
+          />
+          <h3  class="text-center">Register</h3>
+          </nb-card-header>
+          <nb-card-body class="example-items-col">
+
+            <div class="form-group">
+              <label for="name" class="label_text">Name</label>
+              <input id="name" type="text" formControlName="name" [class.is-invalid]="f.name.errors" nbInput fullWidth placeholder="Name" class="form-control"/>
+              <div *ngIf="f.name.invalid" class="invalid-feedback">
+                <div *ngIf="f.name.errors.server" [innerHtml]="f.name.getError('server')"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="label_text">Email</label>
+              <input id="email" type="text" formControlName="email" [class.is-invalid]="f.email.errors" nbInput fullWidth placeholder="Email" class="form-control"/>
+              <div *ngIf="f.email.invalid" class="invalid-feedback">
+                <div *ngIf="f.email.errors.server" [innerHtml]="f.email.getError('server')"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="label_text">Password</label>
+              <input id="password" type="password" formControlName="password" [class.is-invalid]="f.password.errors" nbInput fullWidth placeholder="Password" class="form-control" />
+              <div *ngIf="f.password.invalid" class="invalid-feedback">
+                <div *ngIf="f.password.errors.server" [innerHtml]="f.password.getError('server')"></div>
+              </div>
+            </div>
+
+            <div class="form-group terms_and_conditions">
+              <div class="row m-0">
+                <div class="col-sm-6 p-0 text-left">
+                  <nb-checkbox class="terms_and_conditions"[class.is-invalid]="f.is_agree.errors"  formControlName="is_agree"
+                  [status]="f.is_agree.invalid ? 'danger' : 'basic'">I Agree to <a >Terms & Conditions</a></nb-checkbox>
+                  <div *ngIf="f.is_agree.invalid" class="invalid-feedback">
+                    <div *ngIf="f.is_agree.errors.server" [innerHtml]="f.is_agree.getError('server')"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group text-center">
+              <div class="btnblock">
+                <button  nbButton size="large" status="primary" [disabled]="loading" class="btn_register">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"> </span>
+                  Register
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group text-right">
+              <div class="register-block" style="margin-top: 15px;">
+                <p>Already have an account? <a routerLink="/login">Login</a></p>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="step == 2">
+      <form [formGroup]="cardForm" (ngSubmit)="makePayment()" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 offset-sm-4">
+       <nb-card class="login-card">
+        <nb-card-header>
+          <img
+          class="logo"
+          width="100vw"
+          src="/assets/img/sila_logo.png"
+          alt="Logo"
+        />
+        <h3  class="text-center">Card Information</h3>
+        </nb-card-header>
+        <nb-card-body class="example-items-col">
+
+          <div class="form-group ">
+            <label class="block"><b>Card Number</b></label>
+            <!-- {{ f.card_number.errors | json }} -->
+            <input type="tel" (keypress)="keyPressNumbers($event)" minlength="16" maxlength="16"
+              class="form-control" formControlName="card_number" placeholder="Your Card Number"
+              [class.is-invalid]="cf.card_number.errors" />
+            <div *ngIf="cf.card_number.invalid" class="invalid-feedback">
+              <div *ngIf="cf.card_number.errors.server" [innerHtml]="cf.card_number.getError('server')"></div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="block"><b>Card Holder Name</b></label>
+                <input type="text" class="form-control" formControlName="name"
+                  placeholder="Your Card Holder Name" [class.is-invalid]="cf.name.errors" />
+                <div *ngIf="cf.name.invalid" class="invalid-feedback">
+                  <div *ngIf="cf.name.errors.server" [innerHtml]="cf.name.getError('server')"></div>
+                </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="block"><b>Month</b></label>
+                <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="1"
+                  maxlength="2" formControlName="exp_month" placeholder="MM"
+                  [class.is-invalid]="cf.exp_month.errors" />
+                <div *ngIf="cf.exp_month.invalid" class="invalid-feedback">
+                  <div *ngIf="cf.exp_month.errors.server" [innerHtml]="cf.exp_month.getError('server')"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label class="block"><b>Year</b></label>
+              <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="4"
+                maxlength="4" formControlName="exp_year" placeholder="YYYY"
+                [class.is-invalid]="cf.exp_year.errors" />
+              <div *ngIf="cf.exp_year.invalid" class="invalid-feedback">
+                <div *ngIf="cf.exp_year.errors.server" [innerHtml]="cf.exp_year.getError('server')"></div>
+              </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="block"><b>CVV/CVC</b></label>
+            <input type="password" class="form-control" (keypress)="keyPressNumbers($event)" minlength="3"
+              maxlength="3" formControlName="cvc" placeholder="CVV/CVC" [class.is-invalid]="cf.cvc.errors" />
+            <div *ngIf="cf.cvc.invalid" class="invalid-feedback">
+              <div *ngIf="cf.cvc.errors.server" [innerHtml]="cf.cvc.getError('server')"></div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+              <button type="submit" fullWidth nbButton status="primary" [disabled]="loading"
+              class="btn btn_submit">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Add Card
+            </button>
+          </div>
+        </nb-card-body>
+       </nb-card>
+       
+      </form>
+    </ng-container>
+    
+    </div>
+  </nb-layout-column>
+</nb-layout>
+

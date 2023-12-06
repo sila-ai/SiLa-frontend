@@ -1,0 +1,111 @@
+.flex-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn_submit {
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+}
+
+.btn_submit img {
+  max-width: 17px;
+  margin-right: 8px;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.bordered {
+  border: 1px solid black !important;
+}
+
+.bordered:hover {
+  cursor: pointer !important;
+}
+#countryName {
+  // display: none;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #4980ff !important;
+}
+
+.mat-radio-button {
+  margin-left: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: #4980ff !important;
+}
+
+.btn-raised {
+  color: white !important;
+  background-color: #4980ff !important;
+}
+
+.white-color {
+  color: white !important;
+  font-weight: bold;
+}
+
+tr.mat-header-row {
+  background-color: #4980ff !important;
+}
+
+.test-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+::ng-deep .ag-theme-alpine .ag-header {
+  background-color: #4980ff !important;
+  color: white !important;
+}
+
+::ng-deep .ag-theme-alpine .ag-header-row {
+  color: white !important;
+}
+
+
+.custom-tooltip {
+  width: 150px;
+  height: 70px;
+  border: 1px solid cornflowerblue;
+  overflow: hidden;
+}
+
+.custom-tooltip p {
+  margin: 5px;
+  white-space: nowrap;
+}
+
+.custom-tooltip p:first-of-type {
+  font-weight: bold;
+}
+.ag-tooltip {
+  background-color: white !important;
+  border-radius: 1px !important;
+  padding: 5px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: #545454 !important;
+}

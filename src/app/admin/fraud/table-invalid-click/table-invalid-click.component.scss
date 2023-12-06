@@ -1,0 +1,26 @@
+nb-card {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+  transition: all .3s linear;
+}
+
+nb-card:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
+  transition: all .3s linear;
+}
+
+nb-list-item {
+  justify-content: space-between;
+
+  .click-name, .click-data {
+    font-size: 0.9375rem;
+    flex: 1;
+  }
+}
+
+.delta-down {
+  color: #ff3d71;
+}
+
+.delta-up {
+  color: #00d68f;
+}

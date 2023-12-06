@@ -1,0 +1,80 @@
+<div class="payment-main">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <nb-card class="custome-card">
+              <nb-card-header>
+                <h2 class="tilte"> Card Information</h2>
+              </nb-card-header>
+              <nb-card-body>
+                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="block"><b>Card Number</b></label>
+                        <!-- {{ f.card_number.errors | json }} -->
+                        ***********{{cardNumber}}
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="block"><b>Card Holder Name</b></label>
+                        <input type="text" class="form-control" formControlName="name"
+                          placeholder="Your Card Holder Name" [class.is-invalid]="f.name.errors" />
+                        <div *ngIf="f.name.invalid" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.server" [innerHtml]="f.name.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <label class="block"><b>Month</b></label>
+                        <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="1"
+                          maxlength="2" formControlName="exp_month" placeholder="MM"
+                          [class.is-invalid]="f.exp_month.errors" />
+                        <div *ngIf="f.exp_month.invalid" class="invalid-feedback">
+                          <div *ngIf="f.exp_month.errors.server" [innerHtml]="f.exp_month.getError('server')"></div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <label class="block"><b>Year</b></label>
+                        <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="4"
+                          maxlength="4" formControlName="exp_year" placeholder="YYYY"
+                          [class.is-invalid]="f.exp_year.errors" />
+                        <div *ngIf="f.exp_year.invalid" class="invalid-feedback">
+                          <div *ngIf="f.exp_year.errors.server" [innerHtml]="f.exp_year.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <div class="row ">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="text-center">
+                          <button type="submit" fullWidth nbButton status="primary" [disabled]="loading"
+                            class="btn btn_submit">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                             update Card
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

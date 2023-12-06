@@ -1,0 +1,65 @@
+<nb-layout-column>
+
+
+ 
+<div class="page_block">
+  <!-- <div class="page-title">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <h2 class="title_block"> Users </h2>
+        </div>
+      </div>
+  </div>-->
+    
+
+  <nb-card class="custome-card">
+    <nb-card-body>
+      <div class="custome_table table-margin">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-hover table-striped table_block">
+                <thead>
+                  <tr>
+                    <th style="width: 30%">First Name</th>
+                    <th style="width: 30%">Last Name</th>
+                    <th style="width: 30%">Username</th>
+                    <th style="width: 10%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.username}}</td>
+                    <td style="white-space: nowrap">
+                      <button fullWidth
+                            nbButton
+                            size="small"
+                            status="danger"
+                            (click)="deleteUser(user.id)"
+                            class="btn btn-sm btn-danger btn-delete-user"
+                            [disabled]="user.isDeleting">
+                        <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                        <span *ngIf="!user.isDeleting">Delete</span>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!users">
+                    <td colspan="4" class="text-center">
+                      <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+      
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</nb-layout-column>
+      

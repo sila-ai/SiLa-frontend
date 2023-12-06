@@ -1,0 +1,21 @@
+
+.google_btn{
+  display: flex;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.google_btn .g_icon{
+ padding: 12px 15px;
+ margin-top: auto;
+ margin-bottom: auto;
+ background: #fff;
+ border-radius: 5px 0px 0px 5px
+}
+.google_btn .g_text p {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 12px;
+  background: #4980ff;
+  color: #fff;
+  border-radius: 0px 5px 5px 0px
+}

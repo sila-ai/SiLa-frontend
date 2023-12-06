@@ -1,0 +1,29 @@
+<div class="fruadcountry_block">
+  <nb-card class="custome-card">
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="tilte"> Fraud by country </h2>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="source_item" *ngIf="country.length === 0">
+        <h2 class="tilte"> No Fraud countries are found</h2>
+      </div>
+
+      <nb-list class="list_block" *ngIf="country.length > 0">
+        <nb-list-item *ngFor="let cnt of country">
+          <div class="source_item">
+            <div class="imgbox">
+              <img [src]="cnt.flag" class="mr-2" style="width: 20px" alt="">
+            </div>
+            <h2> {{ cnt.name }} </h2>
+            <p> {{ cnt.ranking }} </p>
+          </div>
+        </nb-list-item>
+      </nb-list>
+
+    </nb-card-body>
+  </nb-card>
+</div>

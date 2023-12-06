@@ -1,0 +1,94 @@
+<nb-layout>
+  <nb-layout-column>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <nb-card>
+        <nb-card-header>
+          {{ isNewCustomer ? "Create" : "Update" }} Customer
+        </nb-card-header>
+        <nb-card-body>
+          <div class="mb-3">
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Enter your name"
+              [class.is-invalid]="
+                (f.name.dirty || f.name.touched) && f.name.invalid
+              "
+            />
+            <div
+              *ngIf="(f.name.dirty || f.name.touched) && f.name.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="f.name.errors.server"
+                [innerHtml]="f.name.getError('server')"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Email address</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              placeholder="Enter your email"
+              [class.is-invalid]="
+                (f.email.dirty || f.email.touched) && f.email.invalid
+              "
+            />
+            <div
+              *ngIf="(f.email.dirty || f.email.touched) && f.email.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="f.email.errors.server"
+                [innerHtml]="f.email.getError('server')"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              formControlName="description"
+              ngDefaultControl
+              [class.is-invalid]="
+                (f.description.dirty || f.description.touched) &&
+                f.description.invalid
+              "
+              rows="3"
+            >
+            </textarea>
+            <div
+              *ngIf="
+                (f.description.dirty || f.description.touched) &&
+                f.description.invalid
+              "
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="f.description.errors.server"
+                [innerHtml]="f.description.getError('server')"
+              ></div>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button
+            type="button"
+            (click)="!isNewCustomer ? onUpdate() : onSubmit()"
+            class="float-right"
+            nbButton
+            status="primary"
+          >
+            {{ isNewCustomer ? "Create" : "Update" }}
+          </button>
+        </nb-card-footer>
+      </nb-card>
+    </form>
+  </nb-layout-column>
+</nb-layout>

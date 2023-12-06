@@ -1,0 +1,44 @@
+version: 0.2
+
+phases:
+  #install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      #docker: 18
+  pre_build:
+    commands:
+      - echo "Login into Amazon ECR"
+      - aws --version
+      - docker --version
+      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 912998523803.dkr.ecr.eu-west-1.amazonaws.com
+      # - command
+      # - command
+  build:
+    commands:
+      - echo "Building the Image"
+      #- docker build -t 912998523803.dkr.ecr.eu-west-1.amazonaws.com/frontend:latest .
+      - echo "Docker image build on 'date'"
+      - echo "Pushing Docker Image"
+      #- docker push 912998523803.dkr.ecr.eu-west-1.amazonaws.com/frontend:latest 
+      - echo "Docker image pushed on 'date'"
+      # - command
+      # - command
+
+  post_build:
+    commands:
+      - chmod +x frontend-deploy-ecs.sh
+      - ./frontend-deploy-ecs.sh
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths

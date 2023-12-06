@@ -1,0 +1,133 @@
+<nb-layout>
+    <nb-layout-column>
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <nb-card>
+                <nb-card-header>
+                  {{ isNewPrice ? "Create" : "Update" }} Price
+                </nb-card-header>
+                <nb-card-body>
+                    <div class="mb-3">
+                        <label>Product</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="product"
+                          placeholder="Enter product"
+                          [class.is-invalid]="
+                            (f.product.dirty || f.product.touched) && f.product.invalid
+                          "
+                        />
+                        <div
+                          *ngIf="(f.product.dirty || f.product.touched) && f.product.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            *ngIf="f.product.errors.server"
+                            [innerHtml]="f.product.getError('server')"
+                          ></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Price Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="nickname"
+                          placeholder="Enter plan nickname"
+                          [class.is-invalid]="
+                            (f.nickname.dirty || f.nickname.touched) && f.nickname.invalid
+                          "
+                        />
+                        <div
+                          *ngIf="(f.nickname.dirty || f.nickname.touched) && f.nickname.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            *ngIf="f.nickname.errors.server"
+                            [innerHtml]="f.nickname.getError('server')"
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label>Amount</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="amount"
+                          placeholder="Enter plan amount"
+                          [class.is-invalid]="
+                            (f.amount.dirty || f.amount.touched) && f.amount.invalid
+                          "
+                        />
+                        <div
+                          *ngIf="(f.amount.dirty || f.amount.touched) && f.amount.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            *ngIf="f.amount.errors.server"
+                            [innerHtml]="f.amount.getError('server')"
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label>Currency</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="currency"
+                          placeholder="Enter plan currency"
+                          [class.is-invalid]="
+                            (f.currency.dirty || f.currency.touched) && f.currency.invalid
+                          "
+                        />
+                        <div
+                          *ngIf="(f.currency.dirty || f.currency.touched) && f.currency.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            *ngIf="f.currency.errors.server"
+                            [innerHtml]="f.currency.getError('server')"
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label>Interval</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="interval"
+                          placeholder="Enter plan interval"
+                          [class.is-invalid]="
+                            (f.interval.dirty || f.interval.touched) && f.interval.invalid
+                          "
+                        />
+                        <div
+                          *ngIf="(f.interval.dirty || f.interval.touched) && f.interval.invalid"
+                          class="invalid-feedback"
+                        >
+                          <div
+                            *ngIf="f.interval.errors.server"
+                            [innerHtml]="f.interval.getError('server')"
+                          ></div>
+                        </div>
+                      </div>
+                </nb-card-body>
+                <nb-card-footer>
+                    <button
+                      type="button"
+                      (click)="!isNewPrice ? onUpdate() : onSubmit()"
+                      class="float-right"
+                      nbButton
+                      status="primary"
+                    >
+                      {{ isNewPrice ? "Create" : "Update" }}
+                    </button>
+                </nb-card-footer>
+            </nb-card>
+        </form>
+    </nb-layout-column>
+</nb-layout>

@@ -1,0 +1,594 @@
+<div class="container-fluid">
+  <div class="page_block">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h2 class="title_block">Dashboard</h2>
+        </div>
+      </div>
+    </div>
+    <div class="fruadreport_main pb-5" *ngIf="load">
+      <div class="reportrow1_block">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="tp-wrapper m-2">
+              <div class="tp-box" [@flipState]="flip0">
+                <mat-card class="tp-box__side tp-box__front border-left">
+                  <mat-card-content>
+                    <div class="row m-0">
+                      <div class="col-8 p-0">
+                        <div class="row m-0">
+                          <h6
+                            class="float-left font-bold"
+                            style="color: #17835d">
+                            Saving
+                          </h6>
+                        </div>
+                        <div class="row m-0">
+                          <h4
+                            class="float-left font-bold"
+                            style="color: #17835d">
+                            &#x20AC; {{ savings }}
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="col-4 pr-0">
+                        <span
+                          style="
+                            background-image: linear-gradient(
+                              to top,
+                              #6cc0a2,
+                              #17835d
+                            );
+                            color: white;
+                          "
+                          class="material-icons icon-css float-right">
+                          attach_money
+                        </span>
+                       </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card class="tp-box__side tp-box__back border-left">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+
+                      </div>
+                      <div class="row m-0">
+                        <h4 class="float-left font-bold" style="color: #17835d">
+                          {{ invalidClick }}
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            #6cc0a2,
+                            #17835d
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right"
+                      >
+                        attach_money
+                      </span>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="tp-wrapper m-2">
+              <div class="tp-box" [@flipState]="flip1">
+                <mat-card class="tp-box__side tp-box__front r-border-left">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+                        <h6 class="float-left font-bold" style="color: red">
+                          Blocked
+                        </h6>
+                      </div>
+                      <div class="row m-0">
+                        <h4 class="float-left font-bold" style="color: red">
+                          {{ invalidClick }}
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            rgb(249, 73, 73),
+                            red
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right">
+                        priority_high
+                      </span>
+                    </div>
+                  </div>
+                </mat-card>
+
+                <mat-card class="tp-box__side tp-box__back r-border-left">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+                      </div>
+                      <div class="row m-0">
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            rgb(247, 99, 99),
+                            red
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right"
+                      >
+                        priority_high
+                      </span>
+                      <mat-icon class="float-right mt-4" (click)="toggleFlip(1)"
+                        >chevron_left</mat-icon
+                      >
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="tp-wrapper m-2">
+              <div class="tp-box" [@flipState]="flip2">
+                <mat-card class="tp-box__side tp-box__front border-left-blue">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+                        <h6 class="float-left font-bold" style="color: #3366ff">
+                          Valid clicks
+                        </h6>
+                      </div>
+                      <div class="row m-0">
+                        <h4 class="float-left font-bold" style="color: #3366ff">
+                          {{ validClick }}
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            #7799ff,
+                            #3366ff
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right">
+                        done
+                      </span>
+                    </div>
+                  </div>
+                </mat-card>
+
+                <mat-card class="tp-box__side tp-box__back border-left-blue">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+                        <h6 class="float-left font-bold" style="color: #3366ff">
+                          Valid clicks
+                        </h6>
+                      </div>
+                      <div class="row m-0">
+                        <h4 class="float-left font-bold" style="color: #3366ff">
+                          {{ validClick }}
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            #7799ff,
+                            #3366ff
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right"
+                      >
+                        done
+                      </span>
+                      <mat-icon class="float-right mt-4" (click)="toggleFlip(2)"
+                        >chevron_left</mat-icon
+                      >
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="tp-wrapper m-2">
+              <div class="tp-box" [@flipState]="flip3">
+                <mat-card class="tp-box__side tp-box__front p-border-left">
+                  <mat-card-content>
+                    <div class="row m-0">
+                      <div class="col-8 p-0">
+                        <div class="row m-0">
+                          <h6
+                            class="float-left font-bold"
+                            style="color: purple">
+                            Total clicks
+                          </h6>
+                        </div>
+                        <div class="row m-0">
+                          <h4
+                            class="float-left font-bold"
+                            style="color: purple"
+                          >
+                            {{ totalClick }}
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="col-4 pr-0">
+                        <span
+                          style="
+                            background-image: linear-gradient(
+                              to top,
+                              rgb(233, 134, 233),
+                              purple
+                            );
+                            color: white;
+                          "
+                          class="material-icons icon-css float-right">
+                          touch_app
+                        </span>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+
+                <mat-card class="tp-box__side tp-box__back p-border-left">
+                  <div class="row m-0">
+                    <div class="col-8 p-0">
+                      <div class="row m-0">
+                      </div>
+                      <div class="row m-0">
+                      </div>
+                    </div>
+                    <div class="col-4 pr-0">
+                      <span
+                        style="
+                          background-image: linear-gradient(
+                            to top,
+                            rgb(233, 134, 233),
+                            purple
+                          );
+                          color: white;
+                        "
+                        class="material-icons icon-css float-right"
+                      >
+                        touch_app
+                      </span>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+            <mat-card class="flex-fill m-2">
+              <mat-card-title style="margin-bottom: 0px">
+                <div class="row">
+                  <div class="col-8"></div>
+                  <div class="col-4">
+                    <nb-select
+                      filled
+                      [selected]="selectedHits"
+                      (selectedChange)="changeTime($event)"
+                    >
+                      <nb-option *ngFor="let time of times" [value]="time">
+                        {{ time }}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+                </div>
+              </mat-card-title>
+              <div class="row" style="height: 60vh; overflow-y: scroll">
+                <!-- Graph as smooth graph -->
+                <div class="col-md-12 col-lg-12 mt-5">
+                  <div class="trafic-chart-block">
+                    <div
+                      echarts
+                      [options]="options"
+                      [loading]="isLoading"
+                      theme="macarons"
+                      class="demo-chart"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <mat-card class="flex-fill m-2">
+              <mat-card-title>
+                <h5>Keywords Attracting Fraud</h5>
+              </mat-card-title>
+              <mat-divider></mat-divider>
+              <div style="height: 60vh; overflow-y: scroll; overflow: auto">
+                <ng-container *ngFor="let item of getKeyword(); let i = index">
+                  <div class="row mt-2" style="align-items: baseline">
+                    <div class="col-5">
+                      <h6>{{ item }}</h6>
+                    </div>
+                    <div class="col-5">
+                      <mat-slider
+                        style="width: 100%"
+                        [max]="max"
+                        [min]="min"
+                        [(ngModel)]="item.value"
+                      ></mat-slider>
+                    </div>
+                    <div class="col-1">
+                      <h6 style="color: #3366ff">
+                        {{ keyword[item] }}
+                      </h6>
+                    </div>
+                  </div>
+                  <mat-divider
+                    inset
+                    *ngIf="i + 1 != keywordList.length"
+                  ></mat-divider>
+                </ng-container>
+              </div>
+            </mat-card>
+          </div>
+
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12">
+            <mat-card class="flex-fill m-2">
+              <mat-card-title>
+                <h5>Fraud by Countries</h5>
+              </mat-card-title>
+              <mat-divider></mat-divider>
+              <div style="height: 60vh; overflow-y: scroll">
+                <div class="source_item" *ngIf="country.length === 0">
+                  <h2 class="tilte">No Fraud countries are found</h2>
+                </div>
+
+                <ng-template [ngIf]="country.length > 0">
+                  <ng-container *ngFor="let cnt of country; let i = index">
+                    <div class="row mt-2" style="align-items: baseline">
+                      <div class="col-3">
+                        <img
+                          [nbTooltip]="cnt.name"
+                          [src]="cnt.flag"
+                          class="mr-2"
+                          style="width: 20px"
+                          alt=""
+                        />
+                      </div>
+                      <div class="col-6">
+                        <h6>{{ cnt.name }}</h6>
+                      </div>
+
+                      <div class="col-2">
+                        <h6 style="color: #3366ff">
+                          {{ cnt.ranking }}
+                        </h6>
+                      </div>
+                    </div>
+                    <mat-divider
+                      inset
+                      *ngIf="i + 1 != country.length"
+                    ></mat-divider>
+                  </ng-container>
+                </ng-template>
+              </div>
+            </mat-card>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12">
+            <mat-card class="m-2">
+              <mat-card-title>
+                <h5>Fraud by Campaigns</h5>
+              </mat-card-title>
+              <mat-divider></mat-divider>
+              <div style="height: 60vh; overflow-y: scroll">
+                <ng-container
+                  *ngFor="let item of getFraudCampaigns(); let i = index"
+                >
+                  <div class="row mt-2" style="align-items: baseline">
+                    <div class="col-5">
+                      <h6>{{ item }}</h6>
+                    </div>
+                    <div class="col-5">
+                      <mat-slider
+                        style="width: 100%"
+                        [max]="max"
+                        [min]="min"
+                        [(ngModel)]="item.value"
+                      ></mat-slider>
+                    </div>
+                    <div class="col-1">
+                      <h6 style="color: #3366ff">
+                        {{ fraudCampaign[item] }}
+                      </h6>
+                    </div>
+                  </div>
+                  <mat-divider
+                    inset
+                    *ngIf="i + 1 != campainList.length"
+                  ></mat-divider>
+                </ng-container>
+              </div>
+            </mat-card>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-4 col-xs-12">
+            <mat-card class="m-2">
+              <mat-card-title>
+                <h5>Fraud by Catagory</h5>
+              </mat-card-title>
+              <mat-divider></mat-divider>
+              <div style="height: 60vh; overflow-y: scroll">
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6><b>Total Invalid Traffic</b></h6>
+                  </div>
+                  <div class="col-4">
+                    <h6><b>{{ invalidClick }}</b></h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>Farm</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ farm }}</h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>Automation Tool</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ automationTool }}</h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>Browser Spoofing</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ browserSpoofing }}</h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>Search Engine Bots</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ searchEngine }}</h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>VM</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ vm }}</h6>
+                  </div>
+                </div>
+                <mat-divider inset></mat-divider>
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>Country</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>ISP</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>OS</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>Device</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>IP</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>Browser</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+<!--                <div class="row mt-2">-->
+<!--                  <div class="col-8">-->
+<!--                    <h6>City</h6>-->
+<!--                  </div>-->
+<!--                  <div class="col-4">-->
+<!--                    <h6>{{ invalidClick }}</h6>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <mat-divider inset></mat-divider>-->
+
+                <div class="row mt-2">
+                  <div class="col-8">
+                    <h6>Js Disabled</h6>
+                  </div>
+                  <div class="col-4">
+                    <h6>{{ js }}</h6>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fruadreport_main" *ngIf="!load">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>

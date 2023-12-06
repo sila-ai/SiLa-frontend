@@ -1,0 +1,243 @@
+<nb-layout>
+  <nb-layout-header class="ds_header_admin" fixed>
+    <div class="header_inner">
+      <div class="logo_menu">
+        <a class="sidebar-toggle d-block d-sm-none">
+          <span
+            style="font-size: large; font-weight: bold"
+            [ngStyle]="{
+              color:
+                (userCount * 100) / totalCount > 75
+                  ? 'red'
+                  : (userCount * 100) / totalCount > 50
+                  ? 'orange'
+                  : (userCount * 100) / totalCount > 0
+                  ? 'green'
+                  : null
+            }"
+          >
+            Usage: {{ totalClicks }} / {{ boughtClicks }}
+          </span>
+          &nbsp; &nbsp; &nbsp;
+          <mat-icon
+            class="align-middle d-md-none"
+            style="cursor: pointer"
+            (click)="openNotification(!showNotification)"
+            matBadgeColor="warn"
+            matBadge="{{ notificationList.length }}"
+            *ngIf="notificationList.length > 0"
+          >
+            notifications
+          </mat-icon>
+          <mat-icon
+            class="align-middle d-md-none"
+            style="cursor: pointer"
+            (click)="openNotification(!showNotification)"
+            matBadgeColor="warn"
+            *ngIf="notificationList.length === 0"
+          >
+            notifications
+          </mat-icon>
+          &nbsp;
+          <nb-icon
+            (click)="toggle()"
+            class="align-middle"
+            icon="menu-2-outline"
+          ></nb-icon>
+        </a>
+
+        <div class="logo_block">
+          <a routerLink="">
+            <img class="logo" src="/assets/img/sila_logo.png" alt="Logo" />
+          </a>
+        </div>
+      </div>
+
+      <div class="notification-wrapper d-md-none">
+        <!-- You can put an icon from Material Design icon or Fontawesome -->
+        <div
+          class="notification-btn"
+          (click)="openNotification(!showNotification)"
+        >
+          <span class="mdi mdi-bell"></span>
+        </div>
+        <div
+          *ngIf="showNotification"
+          class="notification-content"
+          (clickOutside)="openNotification(false)"
+          [exclude]="'.notification-btn'"
+        >
+          <!-- <div class="notification-header">
+            <span class="mdi mdi-settings"></span>
+            <span>Notifications</span>
+            <span
+              style="cursor: pointer"
+              (click)="this.showNotification = false"
+              class="material-icons align-middle float-right"
+            >
+              close
+            </span>
+          </div> -->
+          <mat-list role="list">
+            <mat-list-item
+              *ngFor="let item of notificationList"
+              role="listitem"
+              >{{ item.content }}</mat-list-item
+            >
+          </mat-list>
+        </div>
+      </div>
+
+      <div class="flex_menu_block">
+        <div class="campaign_menu" *ngIf="campaigns.length > 0">
+          <nb-select
+            (selectedChange)="change($event)"
+            placeholder="Campaign"
+            filled
+            class="select-campaign"
+            name="slCmp"
+            [(ngModel)]="slCmp"
+            required
+          >
+            <nb-option value="global">Global</nb-option>
+            <nb-option *ngFor="let item of campaigns" value="{{ item }}">{{
+              item
+            }}</nb-option>
+          </nb-select>
+        </div>
+
+        <ul class="navbar pl-0" style="justify-content: start">
+          <li class="nav-item ml-1">
+            <h5
+              [ngStyle]="{
+                color:
+                  (userCount * 100) / totalCount > 75
+                    ? 'red'
+                    : (userCount * 100) / totalCount > 50
+                    ? 'orange'
+                    : (userCount * 100) / totalCount > 0
+                    ? 'green'
+                    : null
+              }"
+            >
+              Usage: {{ totalClicks }} / {{ boughtClicks }}
+            </h5>
+          </li>
+        </ul>
+
+        <ul class="navbar">
+          <li class="nav-item">
+            <mat-icon
+              class="align-middle notification-{{ notificationList.length }}"
+              style="cursor: pointer"
+              (click)="openNotification(!showNotification)"
+              matBadgeColor="warn"
+              matBadge="{{ notificationList.length }}"
+              *ngIf="notificationList.length > 0"
+            >
+              notifications
+            </mat-icon>
+            <mat-icon
+              class="align-middle notification-{{ notificationList.length }}"
+              style="cursor: pointer"
+              (click)="openNotification(!showNotification)"
+              matBadgeColor="warn"
+              *ngIf="notificationList.length === 0"
+            >
+              notifications
+            </mat-icon>
+          </li>
+          <li class="nav-item">
+            <a [matMenuTriggerFor]="menu" class="nav-link userprofile">
+              <img
+                src="./../../assets/img/useprofile.png"
+                alt=""
+                class="profile_img"
+              />
+              <!-- <nb-action class="control-item cardNav" icon="email-outline"></nb-action> -->
+              <!-- <span class="user_name">
+                {{ user.name }}
+              </span> -->
+            </a>
+            <mat-menu #menu="matMenu">
+              <button routerLink="profile/{{ user.id }}" mat-menu-item>
+                <span class="material-icons align-middle"> person </span> &nbsp;
+                {{ user.name }}
+              </button>
+              <button routerLink="customer-user-list" mat-menu-item>
+                <span class="material-icons align-middle"> person </span> &nbsp;
+                Users
+              </button>
+
+              <button (click)="logout()" mat-menu-item>
+                <span class="material-icons align-middle"> logout </span> &nbsp;
+                Logout
+              </button>
+            </mat-menu>
+          </li>
+        </ul>
+
+        <div class="notification-wrapper">
+          <!-- You can put an icon from Material Design icon or Fontawesome -->
+          <div
+            class="notification-btn"
+            (click)="openNotification(!showNotification)"
+          >
+            <span class="mdi mdi-bell"></span>
+          </div>
+          <div
+            *ngIf="showNotification"
+            class="notification-content"
+            (clickOutside)="openNotification(false)"
+            [exclude]="'.notification-btn'"
+          >
+            <!-- <div class="notification-header">
+              <span class="mdi mdi-settings"></span>
+              <span>Notifications</span>
+              <span
+                style="cursor: pointer"
+                (click)="this.showNotification = false"
+                class="material-icons align-middle float-right"
+              >
+                close
+              </span>
+            </div> -->
+            <mat-list role="list">
+              <mat-list-item
+                *ngFor="let item of notificationList"
+                role="listitem"
+                >{{ item.content }}</mat-list-item
+              >
+            </mat-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-layout-header>
+
+  <nb-sidebar
+    tag="left"
+    responsive
+    class="menu-sidebar start menu-item-active custome_sidemenu desktopsidebar"
+    *ngIf="isShown"
+  >
+    <nb-card class="cardNav">
+      <nb-menu [items]="items"> </nb-menu>
+    </nb-card>
+  </nb-sidebar>
+
+  <nb-sidebar
+    tag="left"
+    responsive
+    class="menu-sidebar start menu-item-active custome_sidemenu mobilesidebar"
+    *ngIf="isShown"
+  >
+    <nb-card class="cardNav">
+      <nb-menu [items]="items" (click)="hideNavigationMenu()"> </nb-menu>
+    </nb-card>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

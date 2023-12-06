@@ -1,0 +1,10 @@
+<nb-card>
+    <nb-card-header>Confirm!</nb-card-header>
+    <nb-card-body>
+      {{ title }}
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton status="basic" (click)="close(false)">No</button>
+        <button nbButton status="primary" class="float-right" (click)="close(true)">Yes</button>
+    </nb-card-footer>
+  </nb-card>

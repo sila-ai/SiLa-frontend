@@ -1,0 +1,93 @@
+
+<div class="page_block">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+          <h2 class="title_block"> Users </h2>
+      </div>
+    </div>
+  </div> 
+  
+
+  <nb-card class="custome-card">
+    <nb-card-body>
+      <input
+        nbInput
+        [nbFilterInput]="dataSource"
+        placeholder="Search Data"
+        id="search"
+        class="search-input"
+      />
+      <button
+        nbButton
+        status="primary"
+        type="button"
+        class="float-right"
+        (click)="changePage('/user/customer-user-form')"
+      >
+        Create&nbsp;<i class="fa fa-plus"></i>
+      </button>
+      <table class="customertable"
+        [nbTreeGrid]="dataSource"
+        [nbSort]="dataSource"
+        (sort)="updateSort($event)"
+      >
+        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+  
+        <ng-container
+          *ngFor="let column of defaultColumns; let index = index"
+          [nbTreeGridColumnDef]="column"
+          [showOn]="getShowOn(index)"
+        >
+          <th
+            nbTreeGridHeaderCell
+            [nbSortHeader]="getSortDirection(column)"
+            *nbTreeGridHeaderCellDef
+          >
+            {{ column }}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            {{ row.data[column] || "-" }}
+          </td>
+        </ng-container>
+  
+        <ng-container
+          *ngFor="let column of customColumns; let index = index"
+          [nbTreeGridColumnDef]="column"
+          [showOn]="getShowOn(index)"
+        >
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            {{ column }}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            <button
+              nbButton
+              status="info"
+              *ngIf="column === 'Edit'"
+              (click)="changePage('/user/customer-user-form/' + row.data.Id)"
+            >
+              Edit
+            </button>
+            <button
+              nbButton
+              status="danger"
+              *ngIf="column === 'Delete' && loggedInUserId !== row.data.Id"
+              (click)="delete(row.data.Id)"
+            >
+              Delete
+            </button>
+          </td>
+        </ng-container>
+      </table>
+    </nb-card-body>
+</nb-card>
+</div> 
+  
+
+
+
+
+
+
+

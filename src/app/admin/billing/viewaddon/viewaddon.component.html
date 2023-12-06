@@ -1,0 +1,206 @@
+
+<div class="page_block">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2 class="title_block">Payment Detail</h2>
+            </div>
+        </div>
+    </div>
+    <div class="billinginfo_block">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+ 
+ 
+                 <div class="invoice-box">
+                     <table cellpadding="10" cellspacing="0" class="inocie-main" style="
+                        width: 100%;
+                        margin: 20px auto;
+                        max-width: 800px;
+                        background: white;
+                        border: 1px solid rgb(0 0 0 / 10%);
+                        ">
+                        <tbody>
+                           <tr valign="top" class="top">
+                              <td colspan="2">
+                                 <table cellpadding="15" cellspacing="0" style="
+                                    width: 100%;
+                                    text-align: center;
+                                    ">
+                                    <tbody>
+                                       <tr>
+                                          <td valign="middle" style="width: 100%">
+                                             <img src="/assets/img/sila_logo.png" style="width: 100%;max-width: 200px;">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                           </tr>
+                           <tr class="information">
+                              <td colspan="2">
+                                 <table cellpadding="10" cellspacing="0" style="
+                                    width: 100%;
+                                    margin: 0 0 30px;
+                                    ">
+                                    <tbody>
+                                       <tr>
+                                          <td style="
+                                             width: 50%;
+                                             ">
+                                             <h2 style="
+                                                margin: 0 0 15px;
+                                                text-transform: uppercase;
+                                                font-weight: 800;
+                                                font-size: 24px;
+                                                line-height: normal;
+                                                ">  Payment Detail </h2>
+                                             <p style="
+                                                font-size: 16px;
+                                                margin: 0;
+                                                line-height: 24px;
+                                                "> <b style="
+                                                text-transform: capitalize;
+                                                ">Payment : </b>{{payment_intentId}}  </p>
+                                             <p style="
+                                                font-size: 16px;
+                                                margin: 0;
+                                                line-height: 24px;
+                                                "> <b style="
+                                                text-transform: capitalize;
+                                                ">Payment date : </b> {{Addoncreated}} </p>
+                                             <p style="
+                                                font-size: 16px;
+                                                margin: 0;
+                                                line-height: 24px;
+                                                "> <b style="
+                                                text-transform: capitalize;
+                                                "> Payment amount: </b> {{AddonDetail.amount/100}} {{AddonDetail.currency|uppercase}} </p>
+                                          </td>
+                              
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </td>
+                           </tr>
+                           <tr class="information">
+                              <td colspan="2">
+                                 <table cellpadding="12" cellspacing="4" style="
+                                    border: 0px solid #DFDFDF;
+                                    width: 100%;
+                                    ">
+                                    <thead style="
+                                       background: #F1F3F4;
+                                       ">
+                                       <tr>
+                                          <th style="
+                                          text-align: left;
+                                          font-size: 16px;
+                                          text-transform: uppercase;
+                                          font-weight: 800;font-family: 'Nunito-SemiBold';
+                                             width: 50%;
+                                             "> Description </th>
+                                              <th style="
+                                              text-align: left;
+                                              font-size: 16px;
+                                              text-transform: uppercase;
+                                              font-weight: 800;font-family: 'Nunito-SemiBold';
+                                                 ">  </th>
+                                                <th style="
+                                                text-align: left;
+                                                font-size: 16px;
+                                                text-transform: uppercase;
+                                                font-weight: 800;font-family: 'Nunito-SemiBold';
+                                                   ">  </th>   
+                                          <th style="
+                                          text-align: left;
+                                          font-size: 16px;
+                                          text-transform: uppercase;
+                                          font-weight: 800;font-family: 'Nunito-SemiBold';
+                                             "> Click </th>
+                                          
+                                          <th style="
+                                             text-align: left;
+                                             font-size: 16px;
+                                             text-transform: uppercase;
+                                             font-weight: 800;font-family: 'Nunito-SemiBold';
+                                             "> Amount </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr style="
+                                          ">
+                                          <td style="
+                                             ">
+                                             <p>
+            
+                                          <b>{{AddonMoreDetail.description}}  </b>
+                                             </p>
+                                          </td>
+                                          <td style="
+                                          ">
+                                          <p>
+         
+                                       <b> </b>
+                                          </p>
+                                       </td>
+                                       <td style="
+                                       ">
+                                       <p>
+      
+                                    <b></b>
+                                       </p>
+                                    </td>
+                                          
+                                            <td style="">
+                                             
+                                             <p>
+                                               {{Addonclick}}
+                                             </p>
+                                          </td>
+                                          <td style="
+                                             ">
+                                             <p>
+                                                {{AddonMoreDetail.amount_total}} {{AddonMoreDetail.currency | uppercase}}
+                                             </p>
+                                          </td> 
+                                       </tr>
+                                      
+                                      
+                                       <tr class="" style="
+                                          border-top: 1px solid #F1F3F4;
+                                          ">
+                                          <td colspan="4" style="
+                                             text-align: right;
+                                             ">
+                                             <p> <b> Sub Total </b>  </p>
+                                          </td>
+                                          <td>
+                                             <p> {{AddonMoreDetail.amount_subtotal}} {{AddonMoreDetail.currency | uppercase}}</p>
+                                          </td>
+                                       </tr>
+                                       <tr class="">
+                                          <td colspan="4" style="
+                                             text-align: right;
+                                             ">
+                                             <p> <b> Total </b>  </p>
+                                          </td>
+                                          <td>
+                                             <p> {{AddonMoreDetail.amount_total}} {{AddonMoreDetail.currency | uppercase }}</p>
+                                          </td>
+                                       </tr>
+                                    
+                                    </tbody>
+                                 </table>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+ 
+ 
+            </div>  
+        </div>
+    </div>
+ </div>
+ 

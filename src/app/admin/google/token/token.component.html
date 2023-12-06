@@ -1,0 +1,36 @@
+<app-loader *ngIf="!load && !accountIssue && !manager"></app-loader>
+
+<div
+  class="adword_form"
+  *ngIf="!success && !accountIssue && !manager && accounts.length > 0 && load"
+>
+  <form (ngSubmit)="formOnSubmit()">
+    <div class="form_group">
+      <label for="">Select Your Ad Account</label>
+      <select
+        name=""
+        id=""
+        class="form-select"
+        name="selectAccount"
+        [(ngModel)]="selectAccount"
+        required
+      >
+        <option [ngValue]="" disabled>Select Ad Account</option>
+
+        <option value="{{ account }}" *ngFor="let account of accounts">
+          {{ account }}
+        </option>
+      </select>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="adword_form" *ngIf="success">
+  <div class="success">Your account has been connected successfully</div>
+</div>
+<div class="adword_form" *ngIf="manager">
+  <div class="accountIssue">You can't connect manager account</div>
+</div>
+<div class="adword_form" *ngIf="accountIssue">
+  <div class="accountIssue">Your account didn't connect try again</div>
+</div>

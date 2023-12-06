@@ -1,0 +1,305 @@
+<nb-layout class="loginlayout_padding p-0">
+  <nb-layout-column class="loginlayout_padding">
+    <div class="row m-0 align-items-center" style="height: 100vh;">
+      <ng-container *ngIf="step==1">
+        <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="col-lg-4 col-md-4 col-sm-6 col-xs-12 offset-sm-4"
+      >
+        <nb-card class="login-card">
+          <nb-card-header>
+            <img
+              class="logo"
+              width="100vw"
+              src="/assets/img/sila_logo.png"
+              alt="Logo"
+            />
+            <h3  class="text-center">Login</h3>
+          </nb-card-header>
+          <nb-card-body class="example-items-col">
+            <div class="form-group">
+              <label for="email" class="label_text">Email</label>
+              <input
+                id="email"
+                type="text"
+                formControlName="email"
+                [class.is-invalid]="f.email.errors"
+                nbInput
+                fullWidth
+                placeholder="Email"
+                class="form-control"
+              />
+              <div *ngIf="f.email.invalid" class="invalid-feedback">
+                <div
+                  *ngIf="f.email.errors.server"
+                  [innerHtml]="f.email.getError('server')"
+                ></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="label_text">Password</label>
+              <input
+                id="password"
+                type="password"
+                formControlName="password"
+                [class.is-invalid]="f.password.errors"
+                nbInput
+                fullWidth
+                placeholder="Password"
+                class="form-control"
+              />
+              <div *ngIf="f.password.invalid" class="invalid-feedback">
+                <div
+                  *ngIf="f.password.errors.server"
+                  [innerHtml]="f.password.getError('server')"
+                ></div>
+              </div>
+            </div>
+
+            <div class="form-group label_check">
+              <div class="row m-0">
+                <div class="col-sm-6 p-0 text-left">
+                  <nb-checkbox class="label_check">Remember me</nb-checkbox>
+                </div>
+                <div class="col-sm-6 p-0 text-right">
+                  <div class="forget_text">
+                    <a routerLink="/" (click)="forgotpassword()"
+                      >Forgot Password?
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group text-center">
+              <div class="btnblock">
+                <button
+                  nbButton
+                  size="large"
+                  status="primary"
+                  [disabled]="loading"
+                  class="btn_login"
+                >
+                  <span
+                    *ngIf="loading"
+                    class="spinner-border spinner-border-sm mr-1"
+                  >
+                  </span>
+                  Login
+                </button>
+              </div>
+            </div>
+
+            <!-- <a
+                    nbButton
+                    size="large"
+                    status="primary"
+                    [href]="authUrl"
+                    class="btn_login btn-gmail"
+                  >
+                    continue with gmail
+                  </a> -->
+            <!-- <div class="form-group text-right">
+              <div class="register-block">
+                <p>
+                  Don't have an account?
+                  <a routerLink="/register">Register</a>
+                </p>
+              </div>
+            </div> -->
+          </nb-card-body>
+        </nb-card>
+      </form>
+      </ng-container>
+
+      <ng-container *ngIf="step == 2">
+        <form [formGroup]="cardForm" (ngSubmit)="makePayment()" class="col-lg-4 col-md-4 col-sm-4 col-xs-12 offset-sm-4">
+         <nb-card class="login-card">
+          <nb-card-header>
+            <img
+            class="logo"
+            width="100vw"
+            src="/assets/img/sila_logo.png"
+            alt="Logo"
+          />
+          <h3  class="text-center">Card Information</h3>
+          </nb-card-header>
+          <nb-card-body class="example-items-col">
+  
+            <div class="form-group ">
+              <label class="block"><b>Card Number</b></label>
+              <!-- {{ f.card_number.errors | json }} -->
+              <input type="tel" (keypress)="keyPressNumbers($event)" minlength="16" maxlength="16"
+                class="form-control" formControlName="card_number" placeholder="Your Card Number"
+                [class.is-invalid]="cf.card_number.errors" />
+              <div *ngIf="cf.card_number.invalid" class="invalid-feedback">
+                <div *ngIf="cf.card_number.errors.server" [innerHtml]="cf.card_number.getError('server')"></div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label class="block"><b>Card Holder Name</b></label>
+                  <input type="text" class="form-control" formControlName="name"
+                    placeholder="Your Card Holder Name" [class.is-invalid]="cf.name.errors" />
+                  <div *ngIf="cf.name.invalid" class="invalid-feedback">
+                    <div *ngIf="cf.name.errors.server" [innerHtml]="cf.name.getError('server')"></div>
+                  </div>
+            </div>
+    
+            <div class="form-group">
+              <label class="block"><b>Month</b></label>
+                  <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="1"
+                    maxlength="2" formControlName="exp_month" placeholder="MM"
+                    [class.is-invalid]="cf.exp_month.errors" />
+                  <div *ngIf="cf.exp_month.invalid" class="invalid-feedback">
+                    <div *ngIf="cf.exp_month.errors.server" [innerHtml]="cf.exp_month.getError('server')"></div>
+                  </div>
+              </div>
+  
+              <div class="form-group">
+                <label class="block"><b>Year</b></label>
+                <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="4"
+                  maxlength="4" formControlName="exp_year" placeholder="YYYY"
+                  [class.is-invalid]="cf.exp_year.errors" />
+                <div *ngIf="cf.exp_year.invalid" class="invalid-feedback">
+                  <div *ngIf="cf.exp_year.errors.server" [innerHtml]="cf.exp_year.getError('server')"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+              <label class="block"><b>CVV/CVC</b></label>
+              <input type="password" class="form-control" (keypress)="keyPressNumbers($event)" minlength="3"
+                maxlength="3" formControlName="cvc" placeholder="CVV/CVC" [class.is-invalid]="cf.cvc.errors" />
+              <div *ngIf="cf.cvc.invalid" class="invalid-feedback">
+                <div *ngIf="cf.cvc.errors.server" [innerHtml]="cf.cvc.getError('server')"></div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+                <button type="submit" fullWidth nbButton status="primary" [disabled]="loading"
+                class="btn btn_submit">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Add Card
+              </button>
+            </div>
+          </nb-card-body>
+         </nb-card>
+         
+        </form>
+      </ng-container>
+
+      <ng-template #dialog let-data let-ref="dialogRef">
+        <div class="upgradeplan_modelmain">
+          <nb-card class="upgradeplan-model">
+            <nb-card-header>
+              Upgrade Subscription
+              <button
+                nbButton
+                (click)="ref.close()"
+                class="btn-close"
+              >
+                <img
+                  class="logo"
+                  title="Back to home"
+                  src="/assets/img/cross-icon.png"
+                  alt="Cancel icon"
+                />
+              </button>
+            </nb-card-header>
+            <nb-card-body>
+              <!-- upgared design here -->
+              <div class="upgradeplan-block">
+                <div class="pricing-content">
+                  <div class="row">
+                    <div
+                      class="col-lg-12 col-md-12"
+                      style="margin-bottom: 10px"
+                      *ngFor="let item of plans; index as i"
+                    ><!--
+                      <div class="pricing-item">
+                        <h3>{{ item.product_name }}</h3>
+                        <h2>
+                          {{ item.currency | uppercase }}
+                          {{ item.amount / 100 }} for
+                          {{ item.nickname }} click
+                        </h2>
+                        <span>Per Month</span>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit, sed do eiusmod tempor
+                          incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <hr />
+                        <div class="pricing-list">
+                          <ul>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>
+                              Donec bibendum turpis eu est malesuada.
+                            </li>
+                            <li>Vestibulum fermentum velit.</li>
+                            <li>
+                              Donec mollis lectus eget volutpat
+                              rutrum.
+                            </li>
+                            <li>
+                              Sed aliquam sem id ipsum imperdiet
+                              dapibus.
+                            </li>
+                          </ul>
+                          <a href="#" class="see-feature"
+                            >See all features
+                            <span
+                              ><img
+                                src="/assets/img/y-path.png"
+                                alt="Image not found"
+                            /></span>
+                          </a>
+                        </div>
+                        <hr />
+                        <div class="get-btn">
+                          <button
+                            nbButton
+                            status="primary"
+                            class="btn btn_submit btn_submit1"
+                            [disabled]="item.upgradePlan"
+                            (click)="selectPackage(item);ref.close()"
+
+                          >
+                            GET FREE TRIAL
+                            <span
+                              ><img
+                                src="/assets/img/w-path.png"
+                                alt=""
+                            /></span>
+                          </button>
+                        </div>
+                      </div>-->
+                      
+                        <stripe-pricing-table 
+                          [attr.pricing-table-id]="stripe_table"
+                          [attr.publishable-key]="stripe_key"
+                          [attr.client-reference-id]="id"
+                          [attr.customer-email]="email"
+                          >
+                      </stripe-pricing-table>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </ng-template>
+
+    </div>
+   
+  
+   
+  </nb-layout-column>
+</nb-layout>
+
+

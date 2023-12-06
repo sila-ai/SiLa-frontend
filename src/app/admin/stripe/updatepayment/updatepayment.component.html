@@ -1,0 +1,71 @@
+<nb-card>
+    <nb-card-header>Payment Information</nb-card-header>
+    <nb-card-body>
+      <input
+        nbInput
+        [nbFilterInput]="dataSource"
+        placeholder="Search Data"
+        id="search"
+        class="search-input"
+      />
+      <!-- <button
+        nbButton
+        status="primary"
+        type="button"
+        class="float-right"
+        (click)="changePage('/admin/customer-form')"
+      >
+        Create&nbsp;<i class="fa fa-plus"></i>
+      </button> -->
+      <table
+        [nbTreeGrid]="dataSource"
+        [nbSort]="dataSource"
+        (sort)="updateSort($event)"
+      >
+        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+  
+        <ng-container
+          *ngFor="let column of defaultColumns; let index = index"
+          [nbTreeGridColumnDef]="column"
+          [showOn]="getShowOn(index)"
+        >
+          <th
+            nbTreeGridHeaderCell
+            [nbSortHeader]="getSortDirection(column)"
+            *nbTreeGridHeaderCellDef
+          >
+            {{ column }}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            {{ row.data[column] || "-" }}
+          </td>
+        </ng-container>
+  
+        <ng-container
+          *ngFor="let column of customColumns; let index = index"
+          [nbTreeGridColumnDef]="column"
+          [showOn]="getShowOn(index)"
+        >
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            {{ column }}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            <button
+              nbButton
+              status="info"
+              *ngIf="column === 'Edit'"
+              (click)="changePage('/user/update-payment/'+row.data.Id,row.data)"
+            >
+              Edit
+            </button>
+            <button nbButton status="danger" *ngIf="column === 'Delete'" (click)="delete(row.data.Id)">
+              Delete
+            </button>
+          </td>
+        </ng-container>
+      </table>
+    </nb-card-body>
+  </nb-card>
+  
+

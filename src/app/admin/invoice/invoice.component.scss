@@ -1,0 +1,41 @@
+// :host {
+//     display: block;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+// }
+  
+// .card-row {
+//     display: flex;
+//     margin: 0 -0.5rem;
+//     flex-wrap: wrap;
+// }
+
+// .justify-content-between{
+//     justify-content: space-between;
+//     display: flex;
+// }
+
+// .justify-content-left{
+//     justify-content: flex-start;
+//     display: flex;
+//     font-weight: bold;
+// }
+// .card-col {
+//     width: 30%;
+//     height: 300px;
+//     margin: 1em 1%;
+// }
+
+table tr td, table tr th {
+    border: 0;
+}
+
+table {
+    border-spacing: 0;
+    border-spacing: 0;
+}
+table tr {
+    border-bottom: 0px solid #030F5A1A;
+}
+
+

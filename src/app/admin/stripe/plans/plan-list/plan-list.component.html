@@ -1,0 +1,73 @@
+
+<div class="page_block">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <h2 class="title_block"> Plans </h2>
+      </div>
+    </div>
+  </div>
+
+
+  <nb-card class="custome-card">
+    <nb-card-body>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            
+            <input nbInput [nbFilterInput]="dataSource" placeholder="Search Data" id="search"
+              class="form-control search-input mb-2" />
+          </div>
+          <div class="col-sm-6">
+            <div class="flex align-item-end justify-item-end">
+              <button nbButton status="primary" type="button" class="float-right btn-createuser"
+                (click)="changePage('/admin/plan-form')">
+                Create&nbsp;<i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+                <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+                <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+                <ng-container *ngFor="let column of defaultColumns; let index = index" [nbTreeGridColumnDef]="column"
+                  [showOn]="getShowOn(index)">
+                  <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+                    {{ column }}
+                  </th>
+                  <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                    {{ row.data[column] || "-" }}
+                  </td>
+                </ng-container>
+
+                <ng-container *ngFor="let column of customColumns; let index = index" [nbTreeGridColumnDef]="column"
+                  [showOn]="getShowOn(index)">
+                  <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+                    {{ column }}
+                  </th>
+                  <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                    <button nbButton status="info" *ngIf="column === 'Edit'"
+                      (click)="changePage('/admin/plan-form/'+row.data.PlanId)">
+                      Edit
+                    </button>
+                    <button nbButton status="danger" *ngIf="column === 'Delete'" (click)="delete(row.data.PlanId)">
+                      Delete
+                    </button>
+                  </td>
+                </ng-container>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

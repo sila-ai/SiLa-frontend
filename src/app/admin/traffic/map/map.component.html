@@ -1,0 +1,175 @@
+<div class="tracfic_map_block">
+  <nb-card class="custome-card">
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-7">
+          <h3 class="title">I want traffic from ...</h3>
+        </div>
+<!--        <div class="col-sm-5">-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            nbInput-->
+<!--            placeholder="Exclude"-->
+<!--            class="form-control search_bloock"-->
+<!--          />-->
+<!--        </div>-->
+        <form>
+          <div class="card" style="width: 25rem">
+            <div class="card-body">
+              <div class="form-group">
+                <ng-multiselect-dropdown
+                  [(ngModel)]="countries"
+                  [placeholder]="'Select countries'"
+                  [settings]="dropdownSettings"
+                  [data]="countryList"
+                  (onSelect)="onItemSelectCountries($event)"
+                  (onSelectAll)="onItemSelectAllCountries($event)"
+                  (onDeSelect)="onItemDeSelectCountry($event)"
+                  (onFilterChange)="onFilterChange($event)">
+                </ng-multiselect-dropdown>
+              </div>
+
+              <div class="form-group">
+                <input
+                  class="search_city_input"
+                  type="text"
+                  [(ngModel)]="search_city"
+                  [placeholder]="'Select cities'"
+                  (input)="searchCity()"
+                  name=""
+                  id=""
+                  (click)="searchClick()"/>
+                <div class="select_tr_cities" *ngIf="show_search">
+                  <div class="list_cities" *ngFor="let city of cityList">
+                    <input
+                      type="checkbox"
+                      name="city"
+                      id="{{ city }}"
+                      value="{{ city }}"
+                      [checked]="cities.includes(city) ? true : false"
+                      (click)="cityPush(city)"
+                    />
+                    <label for="{{ city }}">{{ city }}</label>
+                    <!-- <li (click)="cityPush(city)">{{ city }}</li> -->
+                  </div>
+                </div>
+                <!-- <ng-multiselect-dropdown
+                  [placeholder]="'Select cities'"
+                  [settings]="dropdownSettings"
+                  [data]="citieslist"
+                  (onSelect)="onItemSelectCities($event)"
+                  (onSelectAll)="onItemSelectAllCities($event)"
+                  (onDeSelect)="onItemDeSelectCity($event)"
+                >
+                </ng-multiselect-dropdown> -->
+              </div>
+              <!-- <button
+                type="button"
+                class="btn btn-primary"
+                (click)="countryAndCitySubmit()"
+              >
+                Submit
+              </button> -->
+            </div>
+          </div>
+        </form>
+      </div>
+
+<!--      <div class="row">-->
+<!--        <div class="col-sm-7">-->
+<!--          <form>-->
+<!--            <div class="card" style="width: 25rem">-->
+<!--              <div class="card-body">-->
+<!--                <div class="form-group">-->
+<!--                  <ng-multiselect-dropdown-->
+<!--                    [(ngModel)]="countries"-->
+<!--                    [placeholder]="'Select countries'"-->
+<!--                    [settings]="dropdownSettings"-->
+<!--                    [data]="countryList"-->
+<!--                    (onSelect)="onItemSelectCountries($event)"-->
+<!--                    (onSelectAll)="onItemSelectAllCountries($event)"-->
+<!--                    (onDeSelect)="onItemDeSelectCountry($event)"-->
+<!--                    (onFilterChange)="onFilterChange($event)"-->
+<!--                  >-->
+<!--                  </ng-multiselect-dropdown>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                  <input-->
+<!--                    class="search_city_input"-->
+<!--                    type="text"-->
+<!--                    [(ngModel)]="search_city"-->
+<!--                    (input)="searchCity()"-->
+<!--                    name=""-->
+<!--                    id=""-->
+<!--                    (click)="searchClick()"-->
+<!--                  />-->
+<!--                  <div class="select_tr_cities" *ngIf="show_search">-->
+<!--                    <div class="list_cities" *ngFor="let city of cityList">-->
+<!--                      <input-->
+<!--                        type="checkbox"-->
+<!--                        name="city"-->
+<!--                        id="{{ city }}"-->
+<!--                        value="{{ city }}"-->
+<!--                        [checked]="cities.includes(city) ? true : false"-->
+<!--                        (click)="cityPush(city)"-->
+<!--                      />-->
+<!--                      <label for="{{ city }}">{{ city }}</label>-->
+<!--                      &lt;!&ndash; <li (click)="cityPush(city)">{{ city }}</li> &ndash;&gt;-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; <ng-multiselect-dropdown-->
+<!--                    [placeholder]="'Select cities'"-->
+<!--                    [settings]="dropdownSettings"-->
+<!--                    [data]="citieslist"-->
+<!--                    (onSelect)="onItemSelectCities($event)"-->
+<!--                    (onSelectAll)="onItemSelectAllCities($event)"-->
+<!--                    (onDeSelect)="onItemDeSelectCity($event)"-->
+<!--                  >-->
+<!--                  </ng-multiselect-dropdown> &ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash; <button-->
+<!--                  type="button"-->
+<!--                  class="btn btn-primary"-->
+<!--                  (click)="countryAndCitySubmit()"-->
+<!--                >-->
+<!--                  Submit-->
+<!--                </button> &ndash;&gt;-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-5">
+          <input type="hidden" id="country_value" />
+          <input type="hidden" id="city_value" />
+          <nb-select
+            id="city_select"
+            (selectedChange)="onCityItemSelected($event)"
+            placeholder="Select City"
+          >
+            <nb-option *ngFor="let city of cityList" [value]="city.value">{{
+              city.html
+            }}</nb-option>
+          </nb-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+          <h6 id="continent_title" class="title">
+            Continent Selected: <span id="continent_value"></span>
+          </h6>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="mapsblock">
+        <div
+          id="chartdiv"
+          class="chartcontainer"
+          style="width: 100%; height: 390px"
+        ></div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

@@ -1,0 +1,76 @@
+
+
+
+<div class="page_block">
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h2 class="title_block">
+            {{ isNewAdminUser ? "Create" : "Update" }} Admin User </h2>
+        </div>
+      </div>
+    </div>
+
+
+    <nb-card class="custome-card">
+      <nb-card-body>
+        <div class="custome-form-blocks">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text"> Name</label>
+                <input type="text" class="form-control" formControlName="name"
+                  placeholder="Enter your name" [class.is-invalid]="f.name.errors" />
+                <div *ngIf="f.name.invalid" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.server" [innerHtml]="f.name.getError('server')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text"> Email address</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="Enter your email"
+                  [class.is-invalid]="f.email.errors" />
+                <div *ngIf="f.email.invalid" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.server" [innerHtml]="f.email.getError('server')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-group" *ngIf="isNewAdminUser">
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="lable-text">Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter your password"
+                  [class.is-invalid]="f.password.errors" />
+                <div *ngIf="f.password.invalid" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.server" [innerHtml]="f.password.getError('server')"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="flex align-item-end justify-content-end float-right">
+          <button type="button" class="btn-cancel mr-2" (click)="onCancel()" nbButton status="basic">
+            CANCEL
+          </button>
+          <button type="button" (click)="!isNewAdminUser ? onUpdate() : onSubmit()" nbButton status="primary"
+            class="btn_submit">
+            {{ isNewAdminUser ? "Create" : "Update" }}
+          </button>
+        </div>
+      </nb-card-footer>
+
+    </nb-card>
+  </form>
+</div>

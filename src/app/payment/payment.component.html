@@ -1,0 +1,217 @@
+<div class="payment-main">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-12 col-md-12 col-lg-9">
+
+
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <nb-card class="custome-card">
+              <nb-card-header class="flex-card">
+                <a (click)="goBack()" class="Home-icon">
+                  <img class="logo" title="Back to home" src="/assets/img/back-icon.png" alt="Home Logo" />
+                  
+                </a>
+                <h2 class="tilte"> payment Information </h2>
+                <a (click)="home()" class="Home-icon">
+                  <img class="logo" title="Back to home" src="/assets/img/Icon_feather-home.svg" alt="Logo" />
+                </a>
+              </nb-card-header> 
+            </nb-card>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <nb-card class="custome-card">
+              <nb-card-header>
+                <h2 class="tilte"> Plan Detail </h2> 
+              </nb-card-header>
+              <nb-card-body>
+                <div class="plan-detail">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th> Customer Name </th>
+                          <th>
+                            <nb-icon icon="shopping-bag" status="primary"></nb-icon>
+                            <span class="bold">Plan</span>
+                          </th>
+                          <th>
+                            <nb-icon icon="pricetags" status="primary"></nb-icon><span class="bold">Price</span>
+                          </th>
+                          <th>
+                            <nb-icon icon="calendar" status="primary"></nb-icon><span class="bold">Payment
+                              Frequency</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <nb-user size="large" name="{{ customerName }}"></nb-user>
+                          </td>
+                          <td> {{ planName }} </td>
+                          <td> {{(amount/100)}} {{currency}} </td>
+                          <td> {{ interval | uppercase }} </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="!customer_subscription_status">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <nb-card class="custome-card notcard_block">
+              <nb-card-header>
+                <h2 class="tilte"> Note </h2>
+              </nb-card-header>
+              <nb-card-body>
+                <p>
+                  Dear "{{ customerName }}", You wont be charged any money for 14 days trial period. 
+                </p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <nb-card class="custome-card">
+              <nb-card-header>
+                <h2 class="tilte"> Card Information</h2>
+              </nb-card-header>
+              <nb-card-body>
+                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="block"><b>Card Number</b></label>
+                        <!-- {{ f.card_number.errors | json }} -->
+                        <input type="tel" (keypress)="keyPressNumbers($event)" minlength="16" maxlength="16"
+                          class="form-control" formControlName="card_number" placeholder="Your Card Number"
+                          [class.is-invalid]="f.card_number.errors" />
+                        <div *ngIf="f.card_number.invalid" class="invalid-feedback">
+                          <div *ngIf="f.card_number.errors.server" [innerHtml]="f.card_number.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label class="block"><b>Card Holder Name</b></label>
+                        <input type="text" class="form-control" formControlName="name"
+                          placeholder="Your Card Holder Name" [class.is-invalid]="f.name.errors" />
+                        <div *ngIf="f.name.invalid" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.server" [innerHtml]="f.name.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <label class="block"><b>Month</b></label>
+                        <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="1"
+                          maxlength="2" formControlName="exp_month" placeholder="MM"
+                          [class.is-invalid]="f.exp_month.errors" />
+                        <div *ngIf="f.exp_month.invalid" class="invalid-feedback">
+                          <div *ngIf="f.exp_month.errors.server" [innerHtml]="f.exp_month.getError('server')"></div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-6 col-lg-6">
+                        <label class="block"><b>Year</b></label>
+                        <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" minlength="4"
+                          maxlength="4" formControlName="exp_year" placeholder="YYYY"
+                          [class.is-invalid]="f.exp_year.errors" />
+                        <div *ngIf="f.exp_year.invalid" class="invalid-feedback">
+                          <div *ngIf="f.exp_year.errors.server" [innerHtml]="f.exp_year.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                        <label class="block"><b>CVV/CVC</b></label>
+                        <input type="password" class="form-control" (keypress)="keyPressNumbers($event)" minlength="3"
+                          maxlength="3" formControlName="cvc" placeholder="CVV/CVC" [class.is-invalid]="f.cvc.errors" />
+                        <div *ngIf="f.cvc.invalid" class="invalid-feedback">
+                          <div *ngIf="f.cvc.errors.server" [innerHtml]="f.cvc.getError('server')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <div class="row ">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="text-center">
+                          <button type="submit" fullWidth nbButton status="primary" [disabled]="loading"
+                            class="btn btn_submit">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Add Card
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </nb-card-body>
+            </nb-card>
+          </div>
+
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <nb-card class="custome-card list-card">
+              <nb-card-header>
+                <h2 class="tilte">
+                  {{ !cards?.length ? "Please add a card" : "Choose card" }}
+                </h2>
+              </nb-card-header>
+              <nb-card-body>
+                <form [formGroup]="paymentForm" (ngSubmit)="makePayment()">
+                  <nb-list>
+                    <nb-list-item *ngFor="let item of cards">
+                      <label class="custome_rdaio">
+                        ***********{{ item.card.last4 }} <br />
+                        {{ item.card.exp_month }}/{{ item.card.exp_year }}
+                        <input type="radio" formControlName="card" [value]="item.id">
+                        <span class="checkmark"></span>
+                      </label>
+                    </nb-list-item>
+                  </nb-list>
+                  <div class="row mb-3" *ngIf="cards?.length">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <div class="text-right">
+                        <button type="submit" fullWidth nbButton status="primary" [disabled]="pay_loading"
+                          class="btn btn_submit">
+                          <span *ngIf="pay_loading" class="spinner-border spinner-border-sm mr-1"></span>
+                          Subscribe
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

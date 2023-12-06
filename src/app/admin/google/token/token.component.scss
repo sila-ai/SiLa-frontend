@@ -1,0 +1,40 @@
+.adword_form label,
+.adword_form select {
+  display: block;
+  font-size: 24px;
+  padding: 10px 0px;
+  width: 100%;
+}
+
+.adword_form label,
+.adword_form select {
+  display: block;
+}
+
+.adword_form {
+  width: 600px;
+}
+
+.adword_form button {
+  background-color: #4980ff;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.adword_form .success {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: green;
+  color: #fff;
+  font-weight: bold;
+}
+
+.adword_form .accountIssue {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #db2424;
+  color: #fff;
+  font-weight: bold;
+}
