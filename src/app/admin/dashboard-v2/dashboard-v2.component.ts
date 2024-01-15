@@ -717,7 +717,7 @@ export class DashboardV2Component implements OnInit, OnDestroy {
       if (item.metrics && item.metrics.average_cpc) {
         console.log('cpc pass');
         savings += item.metrics.average_cpc;
-        savingLoop += 1;
+        // savingLoop += 1;
       }
     });
     userLog.map((item: any) => {
@@ -795,9 +795,11 @@ export class DashboardV2Component implements OnInit, OnDestroy {
       this.totalvalid = 0;
     }
 
-    this.savings = savingLoop
-      ? this.math(((savings / savingLoop) * invalidClick) / 1000000)
-      : 0;
+    // this.savings = savingLoop
+      // ? this.math(((savings / savingLoop) * invalidClick) / 1000000)
+      // : 0;
+    
+    this.savings = savings * 3;
 
     // this.series1 = this.dynamicVisit(device);
     // this.series2 = this.dynamicVisit(browser);
